@@ -1,0 +1,7 @@
+
+.item {
+	position: relative;
+	border: 1px solid black;
+	background-color: #eeeeff;
+	width: 100px;
+}
