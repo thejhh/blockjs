@@ -10,11 +10,14 @@
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
    width="32"
-   height="32"
+   height="16"
    id="svg3466"
    version="1.1"
    inkscape:version="0.48.1 "
-   sodipodi:docname="New document 1">
+   sodipodi:docname="connector.svg"
+   inkscape:export-filename="C:\Users\jhh\git-projects\blockjs\connector.png"
+   inkscape:export-xdpi="90"
+   inkscape:export-ydpi="90">
   <title
      id="title4246">Connector</title>
   <defs
@@ -26,11 +29,11 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="15.839192"
-     inkscape:cx="0.1058305"
-     inkscape:cy="12.894998"
+     inkscape:zoom="32"
+     inkscape:cx="16.168202"
+     inkscape:cy="5.6880474"
      inkscape:document-units="px"
-     inkscape:current-layer="layer1"
+     inkscape:current-layer="layer2"
      showgrid="false"
      inkscape:window-width="1920"
      inkscape:window-height="1170"
@@ -50,15 +53,30 @@
     </rdf:RDF>
   </metadata>
   <g
-     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer2"
+     inkscape:label="Input"
+     transform="translate(0,-16)"
+     style="display:none">
+    <path
+       transform="translate(0,-1020.3622)"
+       style="fill:#00aad4;fill-opacity:1;fill-rule:nonzero;stroke:none;display:inline"
+       d="m 9.5,1040.3622 c 0,0 0.964055,0.53 1,1 0.23639,3.0912 -6.4604788,4.5524 -5.5,7.5 1.1921018,3.6585 7.152201,3.5 11,3.5 3.847799,0 9.807898,0.1585 11,-3.5 0.960479,-2.9476 -5.73639,-4.4088 -5.5,-7.5 0.03595,-0.47 1,-1 1,-1 l 9.5,12 -32,0 z"
+       id="rect4249"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="caaaaacccc" />
+  </g>
+  <g
+     inkscape:label="Output"
      inkscape:groupmode="layer"
      id="layer1"
-     transform="translate(0,-1020.3622)">
+     transform="translate(0,-1036.3622)"
+     style="display:inline">
     <path
        style="fill:#00aad4;fill-opacity:1;fill-rule:nonzero;stroke:none"
-       d="m 0,1020.3622 32,0 -16,32 z"
+       d="m 0,1036.3622 32,0 c 0,0 -9.90334,1.8641 -11,5 -0.988135,2.8256 6.782095,4.7482 5.5,7.5 -1.311886,2.8157 -6.682775,3.5 -10.5,3.5 -3.817225,0 -9.1881136,-0.6843 -10.5,-3.5 -1.2820949,-2.7518 6.488135,-4.6744 5.5,-7.5 -1.0966601,-3.1359 -11,-5 -11,-5 z"
        id="rect3474"
        inkscape:connector-curvature="0"
-       sodipodi:nodetypes="cccc" />
+       sodipodi:nodetypes="cccccccc" />
   </g>
 </svg>
