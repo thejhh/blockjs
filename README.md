@@ -5,7 +5,7 @@ blockjs IDE
 blockjs is (going to be) a graphical component IDE (Integrated Development 
 Environment) for JavaScript and [Node.js](http://www.nodejs.org). Programming 
 will be done by combining graphical components instead of writing traditional 
-text files. Complete application source code will look more like a layout.
+text files. Complete application source code will look like a layout.
 
 This project will be a web-based application written in JavaScript and with 
 Node.js. License will be [GPL version 3](https://github.com/jheusala/blockjs/blob/master/COPYING).
