@@ -12,12 +12,17 @@ Node.js. License is [GPL version 3](https://github.com/jheusala/blockjs/blob/mas
 
 Main parts of the blockjs
 -------------------------
-* Block editor
+* Application Editor
 * Block catalogs
-** Standard ECMAScript
-** Client-side
-** Node.js
-* Visual editor for web
+* Visual UI editor for web
+* Block and catalog editors
+
+Block Catalogs
+--------------
+* Standard ECMAScript blocks
+* Client-side blocks
+* Node.js blocks
+* NPM blocks
 
 Similar Applications
 --------------------
