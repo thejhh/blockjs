@@ -2,7 +2,8 @@
 blockjs IDE
 ================================
 
-blockjs is (going to be) an IDE (Integrated Development Environment) for JavaScript and Node.js.
+blockjs is (going to be) a component oriented graphical IDE (Integrated 
+Development Environment) for JavaScript and Node.js.
 
 Similar applications
 --------------------
