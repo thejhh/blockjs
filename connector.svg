@@ -30,10 +30,10 @@
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
      inkscape:zoom="32"
-     inkscape:cx="16.168202"
-     inkscape:cy="5.2897156"
+     inkscape:cx="17.073567"
+     inkscape:cy="8.5114392"
      inkscape:document-units="px"
-     inkscape:current-layer="layer2"
+     inkscape:current-layer="layer1"
      showgrid="false"
      inkscape:window-width="1920"
      inkscape:window-height="1170"
@@ -56,7 +56,7 @@
      inkscape:groupmode="layer"
      id="layer3"
      inkscape:label="Background"
-     style="display:inline"
+     style="display:none"
      sodipodi:insensitive="true">
     <rect
        style="fill:#b3b3b3;fill-opacity:1;fill-rule:nonzero;stroke:none"
@@ -85,12 +85,11 @@
      inkscape:groupmode="layer"
      id="layer1"
      transform="translate(0,-1036.3622)"
-     style="display:inline"
-     sodipodi:insensitive="true">
+     style="display:none">
     <path
-       style="fill:#ffffff;fill-opacity:1;fill-rule:nonzero;stroke:none"
-       d="m 0,1043.2684 8,-3.2187 8,0 8,0 8,3.2812 0,1.0313 -32,0 z"
-       id="rect4292"
+       style="fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none"
+       d="m 0,1043.3622 8,-4 8,0 8,0 8,4 0,1 -32,0 z"
+       id="rect4297"
        inkscape:connector-curvature="0"
        sodipodi:nodetypes="cccccccc" />
     <path
@@ -105,14 +104,8 @@
      id="layer2"
      inkscape:label="Input"
      transform="translate(0,-16)"
-     style="display:inline">
-    <rect
-       style="fill:#ffffff;fill-opacity:1;fill-rule:nonzero;stroke:none"
-       id="rect4295"
-       width="22"
-       height="8"
-       x="5"
-       y="24" />
+     style="display:inline"
+     sodipodi:insensitive="true">
     <path
        style="fill:#00aad4;fill-opacity:1;fill-rule:nonzero;stroke:none;display:inline"
        d="m 0,24 c 0,0 8.8472901,-6.1321 11,-3 1.755989,2.5549 -6.4402684,4.5458 -5.5,7.5 1.1189529,3.5155 6.810676,3.5 10.5,3.5 3.689324,0 9.381047,0.015 10.5,-3.5 0.940268,-2.9542 -7.255989,-4.9451 -5.5,-7.5 2.15271,-3.1321 11,3 11,3 l 0,8 -32,0 z"
