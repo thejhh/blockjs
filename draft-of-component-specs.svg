@@ -15,7 +15,10 @@
    version="1.1"
    inkscape:version="0.48.1 "
    sodipodi:docname="draft-of-component-specs.svg"
-   style="display:inline;enable-background:new">
+   style="display:inline;enable-background:new"
+   inkscape:export-filename="C:\Users\jhh\git-projects\blockjs\draft-of-component-specs.png"
+   inkscape:export-xdpi="90"
+   inkscape:export-ydpi="90">
   <defs
      id="defs4302" />
   <sodipodi:namedview
@@ -25,11 +28,11 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="1.4142136"
-     inkscape:cx="276.36864"
-     inkscape:cy="289.787"
+     inkscape:zoom="1"
+     inkscape:cx="497.76197"
+     inkscape:cy="270.13945"
      inkscape:document-units="px"
-     inkscape:current-layer="svg4300"
+     inkscape:current-layer="layer33"
      showgrid="false"
      inkscape:window-width="1877"
      inkscape:window-height="1139"
@@ -93,43 +96,70 @@
              y="818.57178">http.request</tspan></text>
         <text
            xml:space="preserve"
-           style="font-size:14px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;display:inline;enable-background:new;font-family:Bitstream Vera Sans"
-           x="614.50879"
-           y="802.70471"
-           id="text5048-2"
-           sodipodi:linespacing="125%"><tspan
-             sodipodi:role="line"
-             id="tspan5050-8"
-             x="614.50879"
-             y="802.70471">request</tspan></text>
-        <text
-           xml:space="preserve"
-           style="font-size:14px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;display:inline;enable-background:new;font-family:Bitstream Vera Sans"
-           x="604.09082"
-           y="831.56189"
-           id="text5052-2"
-           sodipodi:linespacing="125%"><tspan
-             sodipodi:role="line"
-             id="tspan5054-2"
-             x="604.09082"
-             y="831.56189">response</tspan></text>
-        <text
-           xml:space="preserve"
-           style="font-size:14px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;display:inline;enable-background:new;font-family:Bitstream Vera Sans"
-           x="4.953125"
+           style="font-size:14px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#4b5320;fill-opacity:1;stroke:none;display:inline;enable-background:new;font-family:Bitstream Vera Sans"
+           x="4.9589844"
            y="818.12891"
            id="text5122-2-8-4-4"
            sodipodi:linespacing="125%"><tspan
              sodipodi:role="line"
              id="tspan5124-0-53-1-6"
-             x="4.953125"
+             x="4.9589844"
              y="818.12891">when</tspan></text>
+        <text
+           xml:space="preserve"
+           style="font-size:12px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#4b5320;fill-opacity:1;stroke:none;font-family:Bitstream Vera Sans"
+           x="4.5898438"
+           y="841.50311"
+           id="text8420"
+           sodipodi:linespacing="125%"><tspan
+             sodipodi:role="line"
+             id="tspan8422"
+             x="4.5898438"
+             y="841.50311">do</tspan></text>
+        <g
+           id="g8428"
+           transform="translate(-0.00876811,0)">
+          <text
+             sodipodi:linespacing="125%"
+             id="text5048-2"
+             y="840.78534"
+             x="293.41309"
+             style="font-size:14px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;display:inline;enable-background:new;font-family:Bitstream Vera Sans"
+             xml:space="preserve"><tspan
+               y="840.78534"
+               x="293.41309"
+               id="tspan5050-8"
+               sodipodi:role="line">request</tspan></text>
+          <text
+             sodipodi:linespacing="125%"
+             id="text5052-2"
+             y="839.5993"
+             x="355.54279"
+             style="font-size:14px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;display:inline;enable-background:new;font-family:Bitstream Vera Sans"
+             xml:space="preserve"><tspan
+               y="839.5993"
+               x="355.54279"
+               id="tspan5054-2"
+               sodipodi:role="line">response</tspan></text>
+          <text
+             sodipodi:linespacing="125%"
+             id="text8424"
+             y="841.53241"
+             x="257.38687"
+             style="font-size:12px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#4b5320;fill-opacity:1;stroke:none;font-family:Bitstream Vera Sans"
+             xml:space="preserve"><tspan
+               y="841.53241"
+               x="257.38687"
+               id="tspan8426"
+               sodipodi:role="line">with</tspan></text>
+        </g>
       </g>
       <g
          inkscape:groupmode="layer"
          id="layer28"
          inkscape:label="end"
-         style="display:inline">
+         style="display:inline"
+         sodipodi:insensitive="true">
         <rect
            style="fill:#d7e3f4;fill-opacity:1;fill-rule:nonzero;stroke:#000000;stroke-width:0.59980834;stroke-opacity:1;display:inline;enable-background:new"
            id="rect4308-3-5-3-9"
@@ -204,7 +234,8 @@
          inkscape:groupmode="layer"
          id="layer27"
          inkscape:label="writeHead"
-         style="display:inline">
+         style="display:inline"
+         sodipodi:insensitive="true">
         <rect
            style="fill:#d7e3f4;fill-opacity:1;fill-rule:nonzero;stroke:#000000;stroke-width:0.87994576;stroke-opacity:1;display:inline;enable-background:new"
            id="rect4308-3-5-74"
@@ -360,7 +391,8 @@
        inkscape:groupmode="layer"
        id="layer26"
        inkscape:label="listen"
-       style="display:inline">
+       style="display:inline"
+       sodipodi:insensitive="true">
       <rect
          style="fill:#d7f4e3;fill-opacity:1;fill-rule:nonzero;stroke:#000000;stroke-width:0.80148011;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;display:inline;enable-background:new"
          id="rect4822-3"
