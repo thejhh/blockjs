@@ -5,8 +5,8 @@ Components
 ----------
 
 Components in blockjs are reusable small blocks of code presented and used 
-graphically in the IDE. Users can choose these components from the catalogs or 
-even write their own and share to the world in their own catalogs.
+graphically in the IDE. Users can choose these components from catalogs or 
+even write their own and share to the world.
 
 Application Schemas
 -------------------
