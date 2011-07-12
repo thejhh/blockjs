@@ -8,8 +8,8 @@ Components in blockjs are reusable small blocks of code presented and used
 graphically in the IDE. Users can choose these components from catalogs or 
 even write their own and share to the world.
 
-Application Schemas
--------------------
+Schemas
+-------
 
 Your application made with blockjs will not have a source code in the 
 traditional meaning. It will be made of a schema that uses different 
@@ -18,25 +18,25 @@ might be more than one choise for a vendor for a particular component. You
 might even use different versions of the same component at the same time in a 
 single schema.
 
-Schemas can be shared and choosen from online catalogs in the same way as 
+Schemas can be shared and reused from online catalogs in the same way as 
 components.
 
 User Interface
 --------------
 
-Programming is done by drag'n'droping components from a catalog to your schema.
+Programming is done by drag'n'droping components from a catalog into your schema.
 
-Diagram Model Drafts
---------------------
+Diagram Models
+--------------
 
-### Simplified Diagram Model
+### Simplified Model
 
 Simplified Model presents the code as components more naturally but will need 
 more work to build these components.
 
 ![Hello World webserver using Simplified Model](https://github.com/jheusala/blockjs/raw/master/doc/draft/simplified.png)
 
-### Generic Diagram Model
+### Generic Model
 
 Generic Model was the first draft I made and presents the JavaScript code as 
 components almost 1-to-1.
