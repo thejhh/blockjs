@@ -4,14 +4,14 @@ blockjs Documentation - Draft Version
 Components
 ----------
 
-Components in blockjs are reusable small blocks of code presented and used 
+[Components](https://github.com/jheusala/blockjs/tree/master/doc/draft/components) are reusable small blocks of code presented and used 
 graphically in the IDE. Users can choose these components from catalogs or 
 even write their own and share to the world.
 
 Schemas
 -------
 
-Your application made with blockjs will not have a source code in the 
+An application made with blockjs will not have a source code in the 
 traditional meaning. It will be made of a schema that uses different 
 components. These components might be from different vendors and there even 
 might be more than one choise for a vendor for a particular component. You 

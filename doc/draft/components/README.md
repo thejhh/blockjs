@@ -8,9 +8,12 @@ even write their own and share to the world.
 Main Component
 --------------
 
-The main component specifies where the application starts:
+The main component specifies where the application starts and what objects it can use:
 
 ![Main component for an application](https://github.com/jheusala/blockjs/raw/master/doc/draft/components/main.png)
+
+This application uses an object named httpd and a programmer can use all 
+components defined for that specific object.
 
 Data components
 ---------------
