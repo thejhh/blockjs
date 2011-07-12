@@ -13,12 +13,14 @@ This project will be a web-based application written in JavaScript and with
 Node.js. License is [GPL version 3](https://github.com/jheusala/blockjs/blob/master/COPYING).
 
 Project Status
--------------
+--------------
 
-At the moment I am gathering ideas and comments how the blocks should be 
-presented (see 
-[draft](https://github.com/jheusala/blockjs/tree/master/doc/draft)) 
-and doing some small concept testing.
+At the moment I am writing [documentation 
+draft](https://github.com/jheusala/blockjs/tree/master/doc/draft). Also 
+gathering ideas and comments how the blocks should be presented and doing some 
+small concept testing.
+
+Feel free to fork the project and test your own ideas!
 
 Main parts of the blockjs
 -------------------------
