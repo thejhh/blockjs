@@ -12,7 +12,7 @@ The main component specifies where the application starts and what objects it ca
 
 ![Main component for an application](https://github.com/jheusala/blockjs/raw/master/doc/draft/components/main.png)
 
-This application uses an object named httpd and a programmer can use all 
+This application uses an object named httpd and the programmer can use all 
 components defined for that specific object.
 
 Data components
