@@ -40,7 +40,9 @@ Event handlers are created with another component:
 
 ![Component to handle event](https://github.com/jheusala/blockjs/raw/master/doc/draft/components/httpd-request-event.png)
 
-Event handlers do not need to be connected to other components.
+Event handlers do not need to be connected to other components. This event 
+handler has two objects the programmer can use inside the handler 
+implementation.
 
 Full Examples
 -------------
