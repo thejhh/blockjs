@@ -22,9 +22,12 @@ Data components
 
 ![Text Component](https://github.com/jheusala/blockjs/raw/master/doc/draft/components/text.png)
 
-Objects can be created too:
+Objects can be created, too:
 
-![Component to create an object](https://github.com/jheusala/blockjs/raw/master/doc/draft/components/create-object.png)
+![Component to create an object](https://github.com/jheusala/blockjs/raw/master/doc/draft/components/create-full-object.png)
+
+This same object as JavaScript code:
+ {'foo':123,'bar':'text/plain'}
 
 3rd Party Components
 --------------------
