@@ -35,7 +35,11 @@ Here is the same object as JavaScript code:
 
 Here is a component that calls method listen in the http server object with two arguments:
 
-![Component to call method](https://github.com/jheusala/blockjs/raw/master/doc/draft/components/call-httpd-listen.png)
+![Component to call method](https://github.com/jheusala/blockjs/raw/master/doc/draft/components/full-call-httpd-listen.png)
+
+This is the same component when presented in a different way:
+
+![Component to call method](https://github.com/jheusala/blockjs/raw/master/doc/draft/components/full-call-httpd-listen-2.png)
 
 Event handlers are created with another component:
 
