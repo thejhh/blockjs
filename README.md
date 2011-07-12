@@ -15,10 +15,10 @@ Node.js. License is [GPL version 3](https://github.com/jheusala/blockjs/blob/mas
 Project Status
 --------------
 
-At the moment I am writing documentation and also gathering ideas and comments 
-how the blocks should be presented (see 
-[draft](https://github.com/jheusala/blockjs/tree/master/doc/draft)) and doing 
-some small concept testing.
+At the moment I am writing [documentation 
+draft](https://github.com/jheusala/blockjs/tree/master/doc/draft). Also 
+gathering ideas and comments how the blocks should be presented and doing some 
+small concept testing.
 
 Feel free to fork the project and test your own ideas!
 
