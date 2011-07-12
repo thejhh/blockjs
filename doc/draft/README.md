@@ -21,6 +21,14 @@ single schema.
 Schemas can be shared and reused from online catalogs in the same way as 
 components.
 
+Connectors
+----------
+
+At the moment there is only one type of connector presented as filled triangle. 
+This will be changed because one of the key features of component based 
+programming is the ability to build a programming language without syntax 
+errors. It should not be possible to join two illegal components.
+
 User Interface
 --------------
 
