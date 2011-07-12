@@ -32,13 +32,15 @@ This same object as JavaScript code:
 3rd Party Components
 --------------------
 
-Here is a component that calls method listen in the http server object:
+Here is a component that calls method listen in the http server object with two arguments:
 
 ![Component to call method](https://github.com/jheusala/blockjs/raw/master/doc/draft/components/call-httpd-listen.png)
 
-Event handlers are created with a special component:
+Event handlers are created with another component:
 
 ![Component to handle event](https://github.com/jheusala/blockjs/raw/master/doc/draft/components/httpd-request-event.png)
+
+Event handlers do not need to be connected to other components.
 
 Full Examples
 -------------
