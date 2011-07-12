@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="380"
+   height="95"
+   id="svg3406"
+   version="1.1"
+   inkscape:version="0.48.1 "
+   sodipodi:docname="New document 12">
+  <defs
+     id="defs3408" />
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="1.4"
+     inkscape:cx="312.27442"
+     inkscape:cy="171.10753"
+     inkscape:document-units="px"
+     inkscape:current-layer="layer1"
+     showgrid="false"
+     inkscape:window-width="1920"
+     inkscape:window-height="1170"
+     inkscape:window-x="-6"
+     inkscape:window-y="-6"
+     inkscape:window-maximized="1" />
+  <metadata
+     id="metadata3411">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1"
+     transform="translate(0,-957.36218)">
+    <g
+       id="g3472"
+       transform="translate(-279.99998,221.0714)">
+      <rect
+         ry="0"
+         rx="0"
+         y="736.48865"
+         x="280.19785"
+         height="94.604279"
+         width="379.60428"
+         id="rect4308-3-9-1-1"
+         style="fill:#e3d7f4;fill-opacity:1;fill-rule:nonzero;stroke:#000000;stroke-width:0.39572188;stroke-opacity:1;display:inline;enable-background:new" />
+      <rect
+         y="801.40417"
+         x="285.11337"
+         height="24.773249"
+         width="369.77325"
+         id="rect5582-5"
+         style="fill:#ffffff;fill-opacity:1;fill-rule:nonzero;stroke:#000000;stroke-width:0.22675245;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;display:inline;enable-background:new" />
+      <text
+         sodipodi:linespacing="125%"
+         id="text4996-9-1"
+         y="772.50043"
+         x="416.90967"
+         style="font-size:18px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;display:inline;enable-background:new;font-family:Bitstream Vera Sans"
+         xml:space="preserve"><tspan
+           y="772.50043"
+           x="416.90967"
+           id="tspan4998-2-1"
+           sodipodi:role="line">httpd.request</tspan></text>
+      <text
+         sodipodi:linespacing="125%"
+         id="text5122-2-8-4-4"
+         y="772.05756"
+         x="284.95898"
+         style="font-size:14px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#4b5320;fill-opacity:1;stroke:none;display:inline;enable-background:new;font-family:Bitstream Vera Sans"
+         xml:space="preserve"><tspan
+           y="772.05756"
+           x="284.95898"
+           id="tspan5124-0-53-1-6"
+           sodipodi:role="line">when</tspan></text>
+      <text
+         sodipodi:linespacing="125%"
+         id="text8420"
+         y="795.43176"
+         x="284.58984"
+         style="font-size:12px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#4b5320;fill-opacity:1;stroke:none;display:inline;enable-background:new;font-family:Bitstream Vera Sans"
+         xml:space="preserve"><tspan
+           y="795.43176"
+           x="284.58984"
+           id="tspan8422"
+           sodipodi:role="line">do</tspan></text>
+      <g
+         id="g3463">
+        <g
+           id="g3457">
+          <text
+             sodipodi:linespacing="125%"
+             id="text5048-2"
+             y="794.71405"
+             x="428.4043"
+             style="font-size:14px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;display:inline;enable-background:new;font-family:Bitstream Vera Sans"
+             xml:space="preserve"><tspan
+               y="794.71405"
+               x="428.4043"
+               id="tspan5050-8"
+               sodipodi:role="line">request</tspan></text>
+          <text
+             sodipodi:linespacing="125%"
+             id="text5052-2"
+             y="794.71405"
+             x="490.534"
+             style="font-size:14px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;display:inline;enable-background:new;font-family:Bitstream Vera Sans"
+             xml:space="preserve"><tspan
+               y="794.71405"
+               x="490.534"
+               id="tspan5054-2"
+               sodipodi:role="line">response</tspan></text>
+        </g>
+        <text
+           xml:space="preserve"
+           style="font-size:12px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#4b5320;fill-opacity:1;stroke:none;font-family:Bitstream Vera Sans"
+           x="392.37808"
+           y="793.508"
+           id="text8424"
+           sodipodi:linespacing="125%"><tspan
+             sodipodi:role="line"
+             id="tspan8426"
+             x="392.37808"
+             y="793.508">with</tspan></text>
+      </g>
+      <path
+         inkscape:transform-center-y="-2.499999"
+         inkscape:transform-center-x="-36.416"
+         sodipodi:nodetypes="cccc"
+         inkscape:connector-curvature="0"
+         id="rect8505-7-9"
+         d="m 295,801.29086 5,0 -2.5,5 z"
+         style="fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none;display:inline;enable-background:new" />
+    </g>
+  </g>
+</svg>
