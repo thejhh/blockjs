@@ -1,0 +1,22 @@
+
+.item {
+	position: relative;
+	color: #ffffff;
+	background-color: #00aad4;
+	width: 100px;
+	padding: 3px;
+	border-bottom: 2px solid #000000;
+}
+
+.item .connector {
+	position: absolute;
+	left: 16px;
+	bottom: -10px;
+	z-index: 1;
+}
+
+.item .connectorB {
+	position: absolute;
+	left: 16px;
+	top: -8px;
+}
