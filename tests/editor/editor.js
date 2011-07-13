@@ -53,16 +53,49 @@ MainComponent.prototype.push = function(item) {
 	this.items.push(item);
 }
 
+/* */
+function makedragable(drawing) {
+	var start, move, up;
+	
+	// storing original coordinates
+	start = function () {
+		this.ox = this.attr("x");
+		this.oy = this.attr("y");
+		//this.attr({opacity: 1});
+	};
+	
+	// move will be called with dx and dy
+	move = function (dx, dy) {
+		//this.attr({"x": this.ox + dx, "y": this.oy + dy});
+		
+		var nx = this.ox + dx,
+		    ny = this.oy + dy;
+		    px = this.px || this.ox,
+		    py = this.py || this.oy;
+		drawing.all.translate(nx - px, ny - py);
+		this.px = nx;
+		this.py = ny;
+	};
+	
+	// restoring state
+	up = function () {
+		//this.attr({opacity: .5});
+	};
+	
+	drawing.all.drag(move, start, up);
+}		
+
 /* Draw MainComponent on editor */
 MainComponent.prototype.draw = function(args) {
 	
 	var args = args || {},
 	    editor = args.editor || {},
 		paper = editor.paper || {},
-	    x = args.x || 100,
-	    y = args.y || 100,
+	    x = args.x || 0,
+	    y = args.y || 0,
 		drawing = {};
 	
+	drawing.pos = {"x":x, "y":y};
 	drawing.outerbox = paper.rect(x, y, 300, 95),
 	drawing.title = paper.text(x+300/2, y + 20, this.title),
 	drawing.label1 = paper.text(x+25, y + 25, "when"),
@@ -79,11 +112,13 @@ MainComponent.prototype.draw = function(args) {
 	);
 	drawing.all = st;
 	
-	drawing.outerbox.attr({fill: "315-#e3d7f4-#9c70d8"});
-	drawing.innerbox.attr({fill: "315-#ffffff-#eeeeee"});
+	drawing.outerbox.attr({'fill': "315-#e3d7f4-#9c70d8"});
+	drawing.innerbox.attr({'fill': "315-#ffffff-#eeeeee"});
 	drawing.label1.attr({'font-size':14, 'fill':'#4b5320'});
 	drawing.label2.attr({'font-size':14, 'fill':'#4b5320'});
 	drawing.title.attr({'font-size':18});
+	
+	makedragable(drawing);
 	
 	return drawing;
 }
