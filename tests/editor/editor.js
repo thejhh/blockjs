@@ -59,31 +59,32 @@ function makedragable(drawing) {
 	
 	// storing original coordinates
 	start = function () {
-		this.ox = this.attr("x");
-		this.oy = this.attr("y");
-		//this.attr({opacity: 1});
+		var svg = this,
+		    tmp = {};
+		svg.dragtmp = tmp;
+		tmp.ox = svg.attr("x");
+		tmp.oy = svg.attr("y");
+		//svg.attr({opacity: 1});
 	};
 	
 	// move will be called with dx and dy
 	move = function (dx, dy) {
-		//this.attr({"x": this.ox + dx, "y": this.oy + dy});
-		
-		var nx = this.ox + dx,
-		    ny = this.oy + dy;
-		    px = this.px || dx,
-		    py = this.py || dy;
-		drawing.all.translate(nx - (this.ox+px), ny - (this.oy+py) );
-		this.px = dx;
-		this.py = dy;
+		var svg = this,
+		    tmp = svg.dragtmp,
+		    nx = tmp.ox + dx,
+		    ny = tmp.oy + dy;
+		    px = tmp.px || dx,
+		    py = tmp.py || dy;
+		drawing.all.translate(nx - (tmp.ox+px), ny - (tmp.oy+py) );
+		tmp.px = dx;
+		tmp.py = dy;
 	};
 	
 	// restoring state
 	up = function () {
-		//this.attr({opacity: .5});
-		delete this.ox;
-		delete this.oy;
-		delete this.px;
-		delete this.py;
+		var svg = this;
+		delete svg.dragtmp;
+		//svg.attr({opacity: .5});
 	};
 	
 	drawing.all.drag(move, start, up);
