@@ -17,10 +17,29 @@ function $(id) {
 	return document.getElementById(id);
 }
 
+/* Create main element */
+function createMainElement(args) {
+	var args = args || {};
+	var paper = args.paper;
+	var x = args.x || 100;
+	var y = args.y || 100;
+	var r = paper.rect(x, y, x+300, y+95);
+	r.attr({fill: "#e3d7f4"});
+	return r;
+}
+
 /* Init drag&drop at onLoad event */
 window.onload = function(){
 	InitDragDrop();
 	_debug = $('debug');
+	
+	/* Setup canvas */
+	var blocks = $('blocks');
+	var paper = Raphael(blocks, 800, 600);
+	
+	/* Draw initial elements */
+	var main = createMainElement({'paper':paper,'x':1, 'y':1});
+	
 }
 
 /* Init drag&drop */
