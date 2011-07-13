@@ -13,7 +13,7 @@ function NumberComponent(args) {
 	this.value = args.value || 0;
 }
 
-* Draw component on editor */
+/* Draw component on editor */
 NumberComponent.prototype.draw = function(args) {
 	
 	var component = this,
