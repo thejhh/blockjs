@@ -46,6 +46,7 @@ TextComponent.prototype.draw = function(args) {
 	
 	drawing.outerbox = paper.rect(x+5, y-5-h/2, 5+w+5, 5+h+5);
 	drawing.outerbox.attr({'fill': "315-#d7f4e3-#a7c4b3"});
+	drawing.outerbox.toBack();
 	
 	drawing.connector = paper.path("M 5 0 L 5 5 L 0 2.5 z");
 	drawing.connector.attr({'fill': "#000000"});

@@ -44,7 +44,10 @@ MainComponent.prototype.draw = function(args) {
 	drawing.label2 = paper.text(x+15, y + 40, "do"),
 	drawing.innerbox = paper.rect(x+5, y+95-35-5, 290, 35);
 	drawing.connector = paper.path("M 0 0 L 5 0 L 2.5 5 z");
-	drawing.connector.translate(x+15, y+95-35-5);
+	drawing.connector.translate(x+5+5+15, y+95-35-5);
+	
+	drawing.innerbox.toBack();
+	drawing.outerbox.toBack();
 	
 	var st = paper.set();
 	st.push(
