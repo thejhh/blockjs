@@ -4,17 +4,17 @@
  * $Id: $
  */
 
-/*** NumberComponent ***/
+/*** TextComponent ***/
 
 /* Create component constructor */
-function NumberComponent(args) {
+function TextComponent(args) {
 	if(!(this instanceof arguments.callee)) return new (arguments.callee)(args);
 	var args = args || {};
-	this.value = args.value || 0;
+	this.value = args.value || "";
 }
 
 /* Draw component on editor */
-NumberComponent.prototype.draw = function(args) {
+TextComponent.prototype.draw = function(args) {
 	
 	var component = this,
 	    args = args || {},
@@ -30,7 +30,7 @@ NumberComponent.prototype.draw = function(args) {
 	drawing.pos = {"x":x, "y":y};
 	
 	// Make text elements
-	drawing.label = paper.text(0, 0, "number");
+	drawing.label = paper.text(0, 0, "text");
 	drawing.label.attr({'font-size':14, 'fill':'#4b5320'});
 	
 	drawing.value = paper.text(0, 0, component.value);

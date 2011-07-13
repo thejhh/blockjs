@@ -11,6 +11,7 @@ window.onload = function(){
 	
 	var main = new MainComponent();
 	schema.push(main);
+	main.push(new TextComponent({'value':'127.0.0.1'}));
 	main.push(new NumberComponent({'value':123}));
 	editor.display(schema);
 }
