@@ -18,43 +18,8 @@ function $(id) {
 	return document.getElementById(id);
 }
 
-/* Create schema constructor */
-function Schema(args) {
-	if(!(this instanceof arguments.callee)) return new (arguments.callee)(args);
-	this.items = [];
-}
-
-/* Add item to schema */
-Schema.prototype.push = function(item) {
-	this.names = [];
-	this.items.push(item);
-}
-
-/* Draw all items on schema */
-Schema.prototype.draw = function(args) {
-	var i,
-	    items = this.items,
-		length = items.length;
-	for(i = 0; i < length; ++i) {
-		items[i].draw(args);
-	}
-}
-
-/* Create main component constructor */
-function MainComponent(args) {
-	if(!(this instanceof arguments.callee)) return new (arguments.callee)(args);
-	this.title = "Main";
-	this.names = [];
-	this.items = [];
-}
-
-/* Add item to schema */
-MainComponent.prototype.push = function(item) {
-	this.items.push(item);
-}
-
-/* */
-function makedragable(drawing) {
+/* Make a drawing dragable */
+function makeDragable(drawing) {
 	var start, move, up;
 	
 	// storing original coordinates
@@ -90,6 +55,41 @@ function makedragable(drawing) {
 	drawing.all.drag(move, start, up);
 }		
 
+/* Create schema constructor */
+function Schema(args) {
+	if(!(this instanceof arguments.callee)) return new (arguments.callee)(args);
+	this.items = [];
+}
+
+/* Add item to schema */
+Schema.prototype.push = function(item) {
+	this.names = [];
+	this.items.push(item);
+}
+
+/* Draw all items on schema */
+Schema.prototype.draw = function(args) {
+	var i,
+	    items = this.items,
+		length = items.length;
+	for(i = 0; i < length; ++i) {
+		items[i].draw(args);
+	}
+}
+
+/* Create main component constructor */
+function MainComponent(args) {
+	if(!(this instanceof arguments.callee)) return new (arguments.callee)(args);
+	this.title = "Main";
+	this.names = [];
+	this.items = [];
+}
+
+/* Add item to schema */
+MainComponent.prototype.push = function(item) {
+	this.items.push(item);
+}
+
 /* Draw MainComponent on editor */
 MainComponent.prototype.draw = function(args) {
 	
@@ -106,6 +106,8 @@ MainComponent.prototype.draw = function(args) {
 	drawing.label1 = paper.text(x+25, y + 25, "when"),
 	drawing.label2 = paper.text(x+15, y + 40, "do"),
 	drawing.innerbox = paper.rect(x+5, y+95-35-5, 290, 35);
+	drawing.connector = paper.path("M 0 0 L 5 0 L 2.5 5 z");
+	drawing.connector.translate(x+15, y+95-35-5);
 	
 	var st = paper.set();
 	st.push(
@@ -113,17 +115,19 @@ MainComponent.prototype.draw = function(args) {
 		drawing.title,
 		drawing.label1,
 		drawing.label2,
-		drawing.innerbox
+		drawing.innerbox,
+		drawing.connector
 	);
 	drawing.all = st;
 	
+	drawing.connector.attr({'fill': "#000000"});
 	drawing.outerbox.attr({'fill': "315-#e3d7f4-#9c70d8"});
 	drawing.innerbox.attr({'fill': "315-#ffffff-#eeeeee"});
 	drawing.label1.attr({'font-size':14, 'fill':'#4b5320'});
 	drawing.label2.attr({'font-size':14, 'fill':'#4b5320'});
 	drawing.title.attr({'font-size':18});
 	
-	makedragable(drawing);
+	makeDragable(drawing);
 	
 	return drawing;
 }
