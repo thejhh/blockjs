@@ -70,16 +70,20 @@ function makedragable(drawing) {
 		
 		var nx = this.ox + dx,
 		    ny = this.oy + dy;
-		    px = this.px || this.ox,
-		    py = this.py || this.oy;
-		drawing.all.translate(nx - px, ny - py);
-		this.px = nx;
-		this.py = ny;
+		    px = this.px || dx,
+		    py = this.py || dy;
+		drawing.all.translate(nx - (this.ox+px), ny - (this.oy+py) );
+		this.px = dx;
+		this.py = dy;
 	};
 	
 	// restoring state
 	up = function () {
 		//this.attr({opacity: .5});
+		delete this.ox;
+		delete this.oy;
+		delete this.px;
+		delete this.py;
 	};
 	
 	drawing.all.drag(move, start, up);
