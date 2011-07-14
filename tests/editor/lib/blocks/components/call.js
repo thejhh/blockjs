@@ -18,6 +18,7 @@ CallComponent.prototype.draw = function(args) {
 	
 	var component = this,
 	    args = args || {},
+	    zindex = args.zindex || 0,
 	    editor = args.editor || {},
 		paper = editor.paper || {},
 		call_name = "",
@@ -26,16 +27,6 @@ CallComponent.prototype.draw = function(args) {
 		drawing = {},
 		w, h, topw, toph, bb1, bb2, optbbs = {}, max_opt_keys_w, max_opt_keys_h, opts_amount, max_opt_values_h, max_opt_h;
 	
-	(function() {
-		var i, items = component.opts;
-		drawing.values = {};
-		drawing.bb_values = {};
-		for(i in items) if(items.hasOwnProperty(i)) {
-			drawing.values[i] = items[i].draw(args);
-			drawing.bb_values[i] = drawing.values[i].outerbox.getBBox();
-		}
-	})();
-	
 	if(component.obj) call_name += component.obj + ".";
 	if(component.name) call_name += component.name;
 	
@@ -43,15 +34,32 @@ CallComponent.prototype.draw = function(args) {
 	
 	drawing.pos = {"x":x, "y":y};
 	
-	// Make text elements
+	// Draw items
+	(function() {
+		var i, items = component.opts;
+		drawing.values = {};
+		drawing.bb_values = {};
+		for(i in items) if(items.hasOwnProperty(i)) {
+			drawing.values[i] = items[i].draw(merge_objects(args, {'zindex':zindex+100, 'x':0, 'y':0}));
+			drawing.bb_values[i] = drawing.values[i].outerbox.getBBox();
+		}
+	})();
+	
+	// Draw input circle
+	drawing.input = paper.circle(x, y, 2);
+	drawing.input.attr({'fill':'#ff0000', 'stroke':'none'});
+	
+	// Draw label
 	drawing.label = paper.text(0, 0, "call");
-	drawing.label.attr({'font-size':14, 'fill':'#4b5320'});
+	drawing.label.attr({'font-size':14, 'fill':'#4b5320', 'z-index':zindex+1});
 	bb1 = drawing.label.getBBox();
 	
+	// Draw name
 	drawing.name = paper.text(0, 0, call_name);
-	drawing.name.attr({'font-size':18});
+	drawing.name.attr({'font-size':18, 'z-index':zindex+1});
 	bb2 = drawing.name.getBBox();
 	
+	// Draw option keywords
 	max_opt_keys_w = 0;
 	max_opt_keys_h = 0;
 	max_opt_values_h = 0;
@@ -61,7 +69,7 @@ CallComponent.prototype.draw = function(args) {
 		var i, opts = component.opts, o;
 		for(i in opts) if(opts.hasOwnProperty(i)) {
 			o = paper.text(0, 0, i);
-			o.attr({'font-size':14, 'fill':'#4b5320'});
+			o.attr({'font-size':14, 'fill':'#4b5320', 'z-index':zindex+1});
 			drawing.opts[i] = o;
 			optbbs[i] = o.getBBox();
 			if(optbbs[i].width > max_opt_keys_w) max_opt_keys_w = optbbs[i].width;
@@ -78,21 +86,37 @@ CallComponent.prototype.draw = function(args) {
 	h = toph;
 	if( (5+max_opt_h) * opts_amount - 5 > h) h = (5+max_opt_h) * opts_amount - 5;
 	
+	drawing.width = 5+w+5;
+	drawing.height = h+5;
+	
+	// Move items to correct place
+	(function() {
+		var i, items = component.opts, cury=y+max_opt_h/2;
+		for(i in items) if(items.hasOwnProperty(i)) {
+			items[i].move(x+drawing.width-15, cury);
+			cury += 5 + items[i].height();
+		}
+
+		/*
+		var i, items = drawing.values, cury=y+max_opt_h/2;
+		for(i in items) if(items.hasOwnProperty(i)) {
+			items[i].all.translate(x+drawing.width-15, cury);
+			cury += 5 + items[i].height;
+		}
+		*/
+	})();
+	
 	drawing.label.attr({'x': x-15+5+bb1.width/2,             'y':y+h/2 });
 	drawing.name.attr( {'x': x-15+5+bb1.width+5+bb2.width/2, 'y':y+h/2 });
 	
+	// Draw outer box in correct size
 	drawing.outerbox = paper.rect(x-15, y, 5+w+5, h);
-	drawing.outerbox.attr({'fill': "315-#d7e3f4-#d7e3f4"});
-	drawing.outerbox.toBack();
+	drawing.outerbox.attr({'fill': "315-#d7e3f4-#d7e3f4", 'z-index':zindex});
+	drawing.outerbox.insertBefore(drawing.label);
 	
-	/*
-	drawing.in_connector = paper.path("M 2.5 0 L 5 5 L 0 5 z");
-	drawing.in_connector.attr({'fill': "#4B5320", 'stroke':'#4B5320'});
-	drawing.in_connector.translate(x-5, y);
-	*/
-	
+	// Draw connector
 	drawing.connector = paper.path("M 0 0 L 5 0 L 2.5 5 z");
-	drawing.connector.attr({'fill': "#000000"});
+	drawing.connector.attr({'fill': "#000000", 'z-index':zindex});
 	drawing.connector.translate(x-2.5, y+h);
 	
 	(function(){
@@ -106,6 +130,7 @@ CallComponent.prototype.draw = function(args) {
 	
 	var st = paper.set();
 	st.push(
+		drawing.input,
 		drawing.outerbox,
 		drawing.label,
 		drawing.name,
@@ -120,6 +145,8 @@ CallComponent.prototype.draw = function(args) {
 	})();
 	drawing.all = st;
 	
+	//drawing.all.attr({'z-index':zindex});
+
 	makeDragable(drawing);
 	
 	return drawing;
@@ -130,5 +157,38 @@ CallComponent.prototype.set = function(name, value) {
 	var component = this;
 	component.opts[name] = value;
 }
+
+/* Move element and all connected components */
+CallComponent.prototype.move = function(x, y) {
+	var component = this,
+	    drawing = component.drawing,
+	    all = drawing.all;
 	
+	// Move self
+	all.translate(x, y);
+	
+	// Move components
+	(function() {
+		var i, items = component.opts;
+		for(i in items) if(items.hasOwnProperty(i)) {
+			items[i].move(x, y);
+		}
+	})();
+	
+}
+
+/* Returns total width of element */
+CallComponent.prototype.width = function() {
+	var component = this,
+	    drawing = component.drawing;
+	return drawing.width;
+}
+
+/* Returns total height of element */
+CallComponent.prototype.height = function() {
+	var component = this,
+	    drawing = component.drawing;
+	return drawing.height;
+}
+
 /* EOF */

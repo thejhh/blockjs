@@ -9,6 +9,15 @@ function $(id) {
 	return document.getElementById(id);
 }
 
+/* Returns current window size */
+function getWindowSize() {
+	var	body = document.body || {},
+	    dElement = ((document.compatMode==='CSS1Compat') && document.dElement) || {},
+		w = window.innerWidth || dElement.offsetWidth || body.offsetWidth || 800,
+		h = window.innerHeight || dElement.offsetHeight || body.offsetHeight || 600;
+	return {'width':w, 'height':h};
+}
+
 /* Make a drawing dragable */
 function makeDragable(drawing) {
 	var start, move, up;
@@ -51,9 +60,17 @@ function Editor(args) {
 	if(!(this instanceof arguments.callee)) return new (arguments.callee)(args);
 	
 	var editor = this,
-	    blocks = $('blocks');
+	    blocks = $('blocks'),
+	    winsize = getWindowSize(),
+	    width = winsize.width-1,
+	    height = winsize.height-32,
+		paper = Raphael(blocks, width, height),
+		space = paper.rect(0, 0, width-1, height-1);
+	space.attr({'fill': "315-#ffffff-#cfcfcf"});
+	//space.toBack();
+	//space.attr({'fill': "315-#ffffff-#cfcfcf", 'z-index': '999'});
 	
-	editor.paper = Raphael(blocks, 800, 600);
+	editor.paper = paper;
 }
 
 /* */
