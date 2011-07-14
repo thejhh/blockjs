@@ -4,23 +4,23 @@
  * $Id: $
  */
 
-/* Create main component constructor */
-function MainComponent(args) {
+/* Create event component constructor */
+function EventComponent(args) {
 	if(!(this instanceof arguments.callee)) return new (arguments.callee)(args);
-	this.title = "Main";
-	this.names = [];
+	this.title = "httpd.request";
+	this.names = ['request', 'response'];
 	this.items = [];
 }
 
 /* Add item to schema */
-MainComponent.prototype.push = function(item) {
+EventComponent.prototype.push = function(item) {
 	this.items.push(item);
 }
 
-/* Draw MainComponent on editor */
-MainComponent.prototype.draw = function(args) {
+/* Draw EventComponent on editor */
+EventComponent.prototype.draw = function(args) {
 	
-	var main = this,
+	var event = this,
 	    args = args || {},
 	    editor = args.editor || {},
 		paper = editor.paper || {},
@@ -28,10 +28,10 @@ MainComponent.prototype.draw = function(args) {
 	    y = args.y || 0,
 		drawing = {};
 	
-	main.drawing = drawing;
+	event.drawing = drawing;
 	
 	(function() {
-		var i, items = main.items, length = items.length;
+		var i, items = event.items, length = items.length;
 		for(i=0; i<length; ++i) {
 			items[i].draw(args);
 		}
@@ -39,7 +39,7 @@ MainComponent.prototype.draw = function(args) {
 	
 	drawing.pos = {"x":x, "y":y};
 	drawing.outerbox = paper.rect(x, y, 300, 95),
-	drawing.title = paper.text(x+300/2, y + 20, this.title),
+	drawing.title = paper.text(x+300/2, y + 20, event.title),
 	drawing.label1 = paper.text(x+25, y + 25, "when"),
 	drawing.label2 = paper.text(x+15, y + 40, "do"),
 	drawing.innerbox = paper.rect(x+5, y+95-35-5, 290, 35);
@@ -70,7 +70,7 @@ MainComponent.prototype.draw = function(args) {
 	makeDragable(drawing);
 	
 	(function() {
-		var i, items = main.items, length = items.length;
+		var i, items = event.items, length = items.length;
 		for(i=0; i<length; ++i) {
 			items[i].drawing.all.toFront();
 		}
