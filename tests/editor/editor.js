@@ -12,7 +12,8 @@ window.onload = function(){
 	    call_listen = new CallComponent({'obj':'httpd', 'name':'listen'}),
 	    event = new EventComponent({'title':'httpd.request', 'names':['request', 'response']}),
 	    call_writehead = new CallComponent({'obj':'response', 'name':'writeHead'}),
-	    call_end = new CallComponent({'obj':'response', 'name':'end'});
+	    call_end = new CallComponent({'obj':'response', 'name':'end'}),
+		create_object = new CreateComponent({'title':'object'});
 	
 	schema.push(main);
 	main.push(call_listen);
@@ -20,7 +21,7 @@ window.onload = function(){
 	call_listen.set("host", new TextComponent({'value':'127.0.0.1'}));
 	
 	call_writehead.set("status", new NumberComponent({'value':200}));
-	//call_writehead.set("host", new TextComponent({'value':''}));
+	call_writehead.set("host", create_object);
 	event.push(call_writehead);
 	
 	call_end.set("output", new TextComponent({'value':'Hello World\n'}));
