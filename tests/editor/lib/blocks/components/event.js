@@ -8,7 +8,7 @@
 function EventComponent(args) {
 	if(!(this instanceof arguments.callee)) return new (arguments.callee)(args);
 	this.title = "httpd.request";
-	this.names = ['request', 'response'];
+	this.names = args.names || [];
 	this.items = [];
 }
 
