@@ -1,12 +1,14 @@
 Components
 ==========
 
-Components in blockjs are reusable small blocks of code presented and used 
-graphically in the IDE. Users can choose these components from catalogs or 
-even write their own and share to the world.
+Components in blockjs are reusable small blocks presented and used graphically 
+in the IDE. Users can choose these components from catalogs or even write their 
+own and share to the world.
 
-Main Component
---------------
+Event and Execution Components
+------------------------------
+
+### MainComponent
 
 The main component specifies where the application starts and what objects it can use:
 
@@ -15,10 +17,18 @@ The main component specifies where the application starts and what objects it ca
 This application uses an object named httpd and the programmer can use all 
 components defined for that specific object.
 
-Data components
----------------
+### BlockComponent
+
+BlockComponent is used to make a queue of components that will be executed in that order until all components have been executed or BreakComponent is called.
+
+Generic Data Components
+-----------------------
+
+### NumberComponent
 
 ![Number Component](https://github.com/jheusala/blockjs/raw/master/doc/draft/components/number.png)
+
+### TextComponent
 
 ![Text Component](https://github.com/jheusala/blockjs/raw/master/doc/draft/components/text.png)
 
@@ -30,8 +40,8 @@ Here is the same object as JavaScript code:
 
     {'foo':123,'bar':'text/plain'}
 
-3rd Party Components
---------------------
+Call Components
+---------------
 
 Here is a component that calls method listen in the http server object with two arguments:
 
