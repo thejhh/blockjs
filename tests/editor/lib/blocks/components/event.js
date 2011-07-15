@@ -92,7 +92,7 @@ EventComponent.prototype.draw = function(args) {
 	drawing.label2.attr({'font-size':14, 'fill':'#4b5320', 'z-index':zindex+2});
 	drawing.title.attr({'font-size':18, 'z-index':zindex+3});
 	
-	makeDragable(drawing);
+	drawing.makeDragable();
 	
 	return drawing;
 }

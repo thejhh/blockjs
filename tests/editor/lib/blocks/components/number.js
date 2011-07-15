@@ -56,7 +56,7 @@ NumberComponent.prototype.draw = function(args) {
 	
 	drawing.init(paper, ['input', 'outerbox', 'label', 'value', 'connector']);
 
-	makeDragable(drawing);
+	drawing.makeDragable();
 	
 	return drawing;
 }

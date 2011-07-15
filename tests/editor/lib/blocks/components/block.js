@@ -58,7 +58,7 @@ BlockComponent.prototype.draw = function(args) {
 	drawing.label2.attr({'font-size':14, 'fill':'#4b5320'});
 	drawing.title.attr({'font-size':18});
 	
-	makeDragable(drawing);
+	drawing.makeDragable();
 	
 	return drawing;
 }

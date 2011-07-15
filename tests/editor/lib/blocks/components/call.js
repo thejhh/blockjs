@@ -135,7 +135,7 @@ CallComponent.prototype.draw = function(args) {
 	})();
 	*/
 
-	makeDragable(drawing);
+	drawing.makeDragable();
 	
 	return drawing;
 }
