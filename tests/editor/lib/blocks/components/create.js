@@ -115,15 +115,12 @@ CreateComponent.prototype.draw = function(args) {
 	
 	// Group elements as a set
 	drawing.init(paper, ['input', 'outerbox', 'label', 'title', 'connector']);
-	
-	/*
 	(function(){
 		var i, opts = drawing.opts;
 		for(i in opts) if(opts.hasOwnProperty(i)) {
-			st.push(opts[i]);
+			drawing.all.push(opts[i]);
 		}
 	})();
-	*/
 
 	drawing.makeDragable();
 	

@@ -126,14 +126,12 @@ CallComponent.prototype.draw = function(args) {
 	})();
 	
 	drawing.init(paper, ['input', 'outerbox', 'label', 'name', 'connector']);
-	/*
 	(function(){
 		var i, opts = drawing.opts;
 		for(i in opts) if(opts.hasOwnProperty(i)) {
-			keys.push(opts[i]);
+			drawing.all.push(opts[i]);
 		}
 	})();
-	*/
 
 	drawing.makeDragable();
 	
