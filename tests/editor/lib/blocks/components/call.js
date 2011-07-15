@@ -8,8 +8,7 @@
 function CallComponent(args) {
 	if(!(this instanceof arguments.callee)) return new (arguments.callee)(args);
 	var args = args || {};
-	this.obj = args.obj;
-	this.name = args.name || "";
+	this.title = args.title || "";
 	this.opts = {};
 }
 
@@ -20,16 +19,26 @@ CallComponent.prototype.draw = function(args) {
 	    args = args || {},
 	    editor = args.editor || {},
 		paper = editor.paper || {},
-		call_name = "",
 	    x = args.x || 0,
 	    y = args.y || 0,
 		drawing = new Drawing(x, y, 1, 1),
 		w, h, topw, toph, bb1, bb2, optbbs = {}, max_opt_keys_w, max_opt_keys_h, opts_amount, max_opt_values_h, max_opt_h;
 	
-	if(component.obj) call_name += component.obj + ".";
-	if(component.name) call_name += component.name;
-	
 	component.drawing = drawing;
+	
+	// Draw input circle
+	drawing.input = paper.circle(x, y, 2);
+	drawing.input.attr({'fill':'#ff0000', 'stroke':'none'});
+	
+	// Draw label
+	drawing.label = paper.text(0, 0, "call");
+	drawing.label.attr({'font-size':14, 'fill':'#4b5320'});
+	bb1 = drawing.label.getBBox();
+	
+	// Draw title
+	drawing.title = paper.text(0, 0, component.title);
+	drawing.title.attr({'font-size':18});
+	bb2 = drawing.title.getBBox();
 	
 	// Draw items
 	(function() {
@@ -41,20 +50,6 @@ CallComponent.prototype.draw = function(args) {
 			drawing.bb_values[i] = drawing.values[i].outerbox.getBBox();
 		}
 	})();
-	
-	// Draw input circle
-	drawing.input = paper.circle(x, y, 2);
-	drawing.input.attr({'fill':'#ff0000', 'stroke':'none'});
-	
-	// Draw label
-	drawing.label = paper.text(0, 0, "call");
-	drawing.label.attr({'font-size':14, 'fill':'#4b5320'});
-	bb1 = drawing.label.getBBox();
-	
-	// Draw name
-	drawing.name = paper.text(0, 0, call_name);
-	drawing.name.attr({'font-size':18});
-	bb2 = drawing.name.getBBox();
 	
 	// Draw option keywords
 	max_opt_keys_w = 0;
@@ -85,25 +80,8 @@ CallComponent.prototype.draw = function(args) {
 	
 	drawing.setSize(5+w+5, h+5);
 	
-	// Move items to correct place
-	(function() {
-		var i, items = component.opts, cury=y+max_opt_h/2;
-		for(i in items) if(items.hasOwnProperty(i)) {
-			items[i].move(x+drawing.width-15, cury);
-			cury += 5 + items[i].height();
-		}
-
-		/*
-		var i, items = drawing.values, cury=y+max_opt_h/2;
-		for(i in items) if(items.hasOwnProperty(i)) {
-			items[i].all.translate(x+drawing.width-15, cury);
-			cury += 5 + items[i].height;
-		}
-		*/
-	})();
-	
 	drawing.label.attr({'x': x-15+5+bb1.width/2,             'y':y+h/2 });
-	drawing.name.attr( {'x': x-15+5+bb1.width+5+bb2.width/2, 'y':y+h/2 });
+	drawing.title.attr( {'x': x-15+5+bb1.width+5+bb2.width/2, 'y':y+h/2 });
 	
 	// Draw outer box in correct size
 	drawing.outerbox = paper.rect(x-15, y, 5+w+5, h);
@@ -111,10 +89,23 @@ CallComponent.prototype.draw = function(args) {
 	drawing.outerbox.insertBefore(drawing.label);
 	
 	// Draw connector
+	/*
 	drawing.connector = paper.path("M 0 0 L 5 0 L 2.5 5 z");
 	drawing.connector.attr({'fill': "#000000"});
 	drawing.connector.translate(x-2.5, y+h);
+	*/
 	
+	// Move items to correct place
+	(function() {
+		var i, items = component.opts, cury=y+max_opt_h/2;
+		for(i in items) if(items.hasOwnProperty(i)) {
+			items[i].move(x+drawing.width-15, cury);
+			cury += 5 + items[i].height();
+			items[i].drawing.all.insertAfter(drawing.title);
+		}
+	})();
+	
+	// 
 	(function(){
 		var i, opts = drawing.opts, tmp_y = y - ( ((5+max_opt_h)*opts_amount-5) / 2 - max_opt_h/2 );
 		tmp_y = y + max_opt_values_h/2;
@@ -124,7 +115,7 @@ CallComponent.prototype.draw = function(args) {
 		}
 	})();
 	
-	drawing.init(paper, ['input', 'outerbox', 'label', 'name', 'connector']);
+	drawing.init(paper, ['input', 'outerbox', 'label', 'name']);
 	(function(){
 		var i, opts = drawing.opts;
 		for(i in opts) if(opts.hasOwnProperty(i)) {
