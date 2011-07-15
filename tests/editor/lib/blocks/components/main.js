@@ -22,7 +22,6 @@ MainComponent.prototype.draw = function(args) {
 	
 	var component = this,
 	    args = args || {},
-	    zindex = args.zindex || 0,
 	    editor = args.editor || {},
 		paper = editor.paper || {},
 	    x = args.x || 0,
@@ -44,7 +43,7 @@ MainComponent.prototype.draw = function(args) {
 	(function() {
 		var i, items = component.items, length = items.length, last, cury = y+drawing.height-35;
 		for(i=0; i<length; ++i) {
-			last = items[i].draw(merge_objects(args, {'zindex':zindex+100, 'x':x+5+25-2.5, 'y':cury}));
+			last = items[i].draw(merge_objects(args, {'x':x+5+25-2.5, 'y':cury}));
 			cury += last.height;
 
 		}
@@ -58,12 +57,12 @@ MainComponent.prototype.draw = function(args) {
 	
 	drawing.init(paper, ['input', 'outerbox', 'title', 'label1', 'label2', 'innerbox', 'connector']);
 	
-	drawing.connector.attr({'fill': "#000000", 'z-index':zindex});
-	drawing.outerbox.attr({'fill': "315-#e3d7f4-#b3a7c4", 'z-index':zindex});
-	drawing.innerbox.attr({'fill': "315-#ffffff-#cfcfcf", 'z-index':zindex+1});
-	drawing.label1.attr({'font-size':14, 'fill':'#4b5320', 'z-index':zindex+2});
-	drawing.label2.attr({'font-size':14, 'fill':'#4b5320', 'z-index':zindex+2});
-	drawing.title.attr({'font-size':18, 'z-index':zindex+3});
+	drawing.connector.attr({'fill': "#000000"});
+	drawing.outerbox.attr({'fill': "315-#e3d7f4-#b3a7c4"});
+	drawing.innerbox.attr({'fill': "315-#ffffff-#cfcfcf"});
+	drawing.label1.attr({'font-size':14, 'fill':'#4b5320'});
+	drawing.label2.attr({'font-size':14, 'fill':'#4b5320'});
+	drawing.title.attr({'font-size':18});
 	
 	drawing.makeDragable();
 	

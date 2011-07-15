@@ -18,7 +18,6 @@ CallComponent.prototype.draw = function(args) {
 	
 	var component = this,
 	    args = args || {},
-	    zindex = args.zindex || 0,
 	    editor = args.editor || {},
 		paper = editor.paper || {},
 		call_name = "",
@@ -38,7 +37,7 @@ CallComponent.prototype.draw = function(args) {
 		drawing.values = {};
 		drawing.bb_values = {};
 		for(i in items) if(items.hasOwnProperty(i)) {
-			drawing.values[i] = items[i].draw(merge_objects(args, {'zindex':zindex+100, 'x':0, 'y':0}));
+			drawing.values[i] = items[i].draw(merge_objects(args, {'x':0, 'y':0}));
 			drawing.bb_values[i] = drawing.values[i].outerbox.getBBox();
 		}
 	})();
@@ -49,12 +48,12 @@ CallComponent.prototype.draw = function(args) {
 	
 	// Draw label
 	drawing.label = paper.text(0, 0, "call");
-	drawing.label.attr({'font-size':14, 'fill':'#4b5320', 'z-index':zindex+1});
+	drawing.label.attr({'font-size':14, 'fill':'#4b5320'});
 	bb1 = drawing.label.getBBox();
 	
 	// Draw name
 	drawing.name = paper.text(0, 0, call_name);
-	drawing.name.attr({'font-size':18, 'z-index':zindex+1});
+	drawing.name.attr({'font-size':18});
 	bb2 = drawing.name.getBBox();
 	
 	// Draw option keywords
@@ -67,7 +66,7 @@ CallComponent.prototype.draw = function(args) {
 		var i, opts = component.opts, o;
 		for(i in opts) if(opts.hasOwnProperty(i)) {
 			o = paper.text(0, 0, i);
-			o.attr({'font-size':14, 'fill':'#4b5320', 'z-index':zindex+1});
+			o.attr({'font-size':14, 'fill':'#4b5320'});
 			drawing.opts[i] = o;
 			optbbs[i] = o.getBBox();
 			if(optbbs[i].width > max_opt_keys_w) max_opt_keys_w = optbbs[i].width;
@@ -108,12 +107,12 @@ CallComponent.prototype.draw = function(args) {
 	
 	// Draw outer box in correct size
 	drawing.outerbox = paper.rect(x-15, y, 5+w+5, h);
-	drawing.outerbox.attr({'fill': "315-#d7e3f4-#d7e3f4", 'z-index':zindex});
+	drawing.outerbox.attr({'fill': "315-#d7e3f4-#d7e3f4"});
 	drawing.outerbox.insertBefore(drawing.label);
 	
 	// Draw connector
 	drawing.connector = paper.path("M 0 0 L 5 0 L 2.5 5 z");
-	drawing.connector.attr({'fill': "#000000", 'z-index':zindex});
+	drawing.connector.attr({'fill': "#000000"});
 	drawing.connector.translate(x-2.5, y+h);
 	
 	(function(){

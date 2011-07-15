@@ -16,7 +16,6 @@ TextComponent.prototype.draw = function(args) {
 	
 	var component = this,
 	    args = args || {},
-	    zindex = args.zindex || 0,
 	    editor = args.editor || {},
 		paper = editor.paper || {},
 	    x = args.x || 0,
@@ -28,10 +27,10 @@ TextComponent.prototype.draw = function(args) {
 	
 	// Make text elements
 	drawing.label = paper.text(0, 0, "text");
-	drawing.label.attr({'font-size':14, 'fill':'#4b5320', 'z-index':zindex+1});
+	drawing.label.attr({'font-size':14, 'fill':'#4b5320'});
 	
 	drawing.value = paper.text(0, 0, component.value);
-	drawing.value.attr({'font-size':18, 'z-index':zindex+1});
+	drawing.value.attr({'font-size':18});
 	
 	bb1 = drawing.label.getBBox();
 	bb2 = drawing.value.getBBox();
@@ -47,11 +46,11 @@ TextComponent.prototype.draw = function(args) {
 	drawing.value.attr({'x': x+5+5+bb1.width+5+bb2.width/2, 'y':y });
 	
 	drawing.outerbox = paper.rect(x+5, y-5-h/2, 5+w+5, 5+h+5);
-	drawing.outerbox.attr({'fill': "315-#d7f4e3-#a7c4b3", 'z-index':zindex});
+	drawing.outerbox.attr({'fill': "315-#d7f4e3-#a7c4b3"});
 	drawing.outerbox.insertBefore(drawing.label);
 	
 	drawing.connector = paper.path("M 5 0 L 5 5 L 0 2.5 z");
-	drawing.connector.attr({'fill': "#000000", 'z-index':zindex});
+	drawing.connector.attr({'fill': "#000000"});
 	drawing.connector.translate(x, y-2.5);
 	
 	drawing.init(paper, ['input', 'outerbox', 'label', 'value', 'connector']);

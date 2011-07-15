@@ -17,7 +17,6 @@ CreateComponent.prototype.draw = function(args) {
 	
 	var component = this,
 	    args = args || {},
-	    zindex = args.zindex || 0,
 	    editor = args.editor || {},
 		paper = editor.paper || {},
 	    x = args.x || 0,
@@ -33,12 +32,12 @@ CreateComponent.prototype.draw = function(args) {
 	
 	// Draw label
 	drawing.label = paper.text(0, 0, "create");
-	drawing.label.attr({'font-size':14, 'fill':'#4b5320', 'z-index':zindex+1});
+	drawing.label.attr({'font-size':14, 'fill':'#4b5320'});
 	bb1 = drawing.label.getBBox();
 	
 	// Draw title
 	drawing.title = paper.text(0, 0, component.title);
-	drawing.title.attr({'font-size':18, 'z-index':zindex+1});
+	drawing.title.attr({'font-size':18});
 	bb2 = drawing.title.getBBox();
 	
 	// Draw keyword values (we don't know correct place yet)
@@ -47,7 +46,7 @@ CreateComponent.prototype.draw = function(args) {
 		drawing.values = {};
 		drawing.bb_values = {};
 		for(i in items) if(items.hasOwnProperty(i)) {
-			drawing.values[i] = items[i].draw(merge_objects(args, {'zindex':zindex+100, 'x':0, 'y':0}));
+			drawing.values[i] = items[i].draw(merge_objects(args, {'x':0, 'y':0}));
 			drawing.bb_values[i] = drawing.values[i].outerbox.getBBox();
 		}
 	})();
@@ -62,7 +61,7 @@ CreateComponent.prototype.draw = function(args) {
 		var i, opts = component.opts, o;
 		for(i in opts) if(opts.hasOwnProperty(i)) {
 			o = paper.text(0, 0, i);
-			o.attr({'font-size':14, 'fill':'#4b5320', 'z-index':zindex+1});
+			o.attr({'font-size':14, 'fill':'#4b5320'});
 			drawing.opts[i] = o;
 			optbbs[i] = o.getBBox();
 			if(optbbs[i].width > max_opt_keys_w) max_opt_keys_w = optbbs[i].width;
@@ -87,12 +86,12 @@ CreateComponent.prototype.draw = function(args) {
 	
 	// Draw outerbox
 	drawing.outerbox = paper.rect(x+5, y-h/2, 5+w+5, h);
-	drawing.outerbox.attr({'fill': "315-#e3d7f4-#b3a7c4", 'z-index':zindex});
+	drawing.outerbox.attr({'fill': "315-#e3d7f4-#b3a7c4"});
 	drawing.outerbox.insertBefore(drawing.label);
 	
 	// Draw connector
 	drawing.connector = paper.path("M 5 0 L 5 5 L 0 2.5 z");
-	drawing.connector.attr({'fill': "#000000", 'z-index':zindex});
+	drawing.connector.attr({'fill': "#000000"});
 	drawing.connector.translate(x, y-2.5);
 	
 	// Move options keywords to right place
