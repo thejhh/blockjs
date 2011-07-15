@@ -44,7 +44,7 @@ EventComponent.prototype.draw = function(args) {
 		}
 	})();
 	
-	drawing.setSize(10+5+max_item_w+5+10, 60+item_h);
+	drawing.resize(10+5+max_item_w+5+10, 60+item_h);
 	
 	// Draw input connector
 	drawing.input = paper.circle(x, y, 2);

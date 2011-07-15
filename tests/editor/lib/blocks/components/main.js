@@ -21,27 +21,46 @@ MainComponent.prototype.draw = function(args) {
 		paper = editor.paper || {},
 	    x = args.x || 0,
 	    y = args.y || 0,
-		drawing = new Drawing(x, y, 300, 95);
+		drawing = new Drawing(x, y, 1, 1);
 	
 	component.drawing = drawing;
 	
+	drawing.bb = {};
+	
+	// Draw input connector
 	drawing.input = paper.circle(x, y, 2);
 	drawing.input.attr({'fill':'#ff0000', 'stroke':'none'});
 	
-	drawing.outerbox = paper.rect(x, y, drawing.width, drawing.height);
-	drawing.outerbox.attr({'fill': "315-#e3d7f4-#b3a7c4"});
-
-	drawing.title = paper.text(x+300/2, y + 20, component.title);
+	// Draw title
+	drawing.title = paper.text(x, y, component.title);
 	drawing.title.attr({'font-size':18});
+	drawing.bb.title = drawing.title.getBBox();
 	
-	drawing.label1 = paper.text(x+25, y + 25, "when");
+	// Draw label1
+	drawing.label1 = paper.text(x, y, "when");
 	drawing.label1.attr({'font-size':14, 'fill':'#4b5320'});
+	drawing.bb.label1 = drawing.label1.getBBox();
 
-	drawing.label2 = paper.text(x+15, y + 40, "do");
+	// Draw label2
+	drawing.label2 = paper.text(x, y, "do");
 	drawing.label2.attr({'font-size':14, 'fill':'#4b5320'});
+	drawing.bb.label2 = drawing.label2.getBBox();
 	
 	// Draw execution objects
-	component.block.draw(merge_objects(args, {'x':x+5, 'y':y+95-35-5}));
+	component.block.draw(merge_objects(args, {'x':x+5, 'y':y+5+drawing.bb.title.height+5}));
+	
+	// Resize drawing
+	drawing.resize(5+component.block.width()+5, y+5+drawing.bb.title.height+5+component.block.height()+5);
+	
+	// Draw outerbox
+	drawing.outerbox = paper.rect(x, y, drawing.width, drawing.height);
+	drawing.outerbox.attr({'fill': "315-#e3d7f4-#b3a7c4"});
+	drawing.outerbox.insertBefore(drawing.title);
+	
+	// Move objects
+	drawing.title.translate(drawing.width/2, 5+drawing.bb.title.height/2);
+	drawing.label1.translate(5+drawing.bb.label1.width/2, (5+drawing.bb.title.height+5) - drawing.bb.label2.height - drawing.bb.label1.height/2);
+	drawing.label2.translate(5+drawing.bb.label2.width/2, (5+drawing.bb.title.height+5) - drawing.bb.label2.height/2);
 	
 	/*
 	(function() {

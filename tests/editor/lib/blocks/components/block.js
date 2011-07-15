@@ -24,24 +24,32 @@ BlockComponent.prototype.draw = function(args) {
 		paper = editor.paper || {},
 	    x = args.x || 0,
 	    y = args.y || 0,
-		drawing = new Drawing(x, y, 300, 95);
+		drawing = new Drawing(x, y, 1, 1),
+		max_items_width = 0,
+		items_height = 0;
 	component.drawing = drawing;
-	
-	drawing.outerbox = paper.rect(x, y, drawing.width, drawing.height);
-	drawing.outerbox.attr({'fill': "315-#ffffff-#cfcfcf"});
-	
-	// Draw execution objects
-	(function() {
-		var i, items = component.items, length = items.length, last, cury = y+5;
-		for(i=0; i<length; ++i) {
-			last = items[i].draw(merge_objects(args, {'x':x+5+15, 'y':cury}));
-			cury += last.height;
-		}
-	})();
 	
 	drawing.connector = paper.path("M 0 0 L 5 0 L 2.5 5 z");
 	drawing.connector.attr({'fill': "#000000"});
 	drawing.connector.translate(x+5+15-2.5, y);
+	
+	// Draw execution objects
+	items_height = 0;
+	(function() {
+		var i, items = component.items, length = items.length, last, cury = y+5;
+		for(i=0; i<length; ++i) {
+			last = items[i].draw(merge_objects(args, {'x':x+5+15, 'y':cury}));
+			cury += last.height+5;
+			if(last.width > max_items_width) max_items_width = last.width;
+			items_height += 5 + last.height;
+		}
+	})();
+	
+	drawing.resize(5+max_items_width+5, items_height + 5);
+	
+	drawing.outerbox = paper.rect(x, y, drawing.width, drawing.height);
+	drawing.outerbox.attr({'fill': "315-#ffffff-#cfcfcf"});
+	drawing.outerbox.insertBefore(drawing.connector);
 	
 	drawing.init(paper, ['outerbox', 'connector']);
 	

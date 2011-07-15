@@ -78,7 +78,7 @@ CreateComponent.prototype.draw = function(args) {
 	h = toph;
 	if( (5+max_opt_h) * opts_amount - 5 > h) h = (5+max_opt_h) * opts_amount - 5;
 	
-	drawing.setSize(5+w+5, h);
+	drawing.resize(5+w+5, h);
 	
 	// Move label and title
 	drawing.label.attr({'x': x+5+5+bb1.width/2,             'y':y });

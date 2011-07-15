@@ -37,7 +37,7 @@ NumberComponent.prototype.draw = function(args) {
 	w = bb1.width + 5 + bb2.width;
 	h = bb2.height > bb1.height ? bb2.height : bb1.height;
 	
-	drawing.setSize(5+5+w+5, 5+h+5);
+	drawing.resize(5+5+w+5, 5+h+5);
 
 	drawing.input = paper.circle(x, y, 2);
 	drawing.input.attr({'fill':'#ff0000', 'stroke':'none'});

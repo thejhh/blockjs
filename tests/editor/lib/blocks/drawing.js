@@ -14,7 +14,7 @@ function Drawing(x, y, w, h) {
 }
 
 /* Set size of drawing */
-Drawing.prototype.setSize = function(w, h) {
+Drawing.prototype.resize = function(w, h) {
 	var drawing = this;
 	drawing.width = w;
 	drawing.height = h;
