@@ -27,12 +27,10 @@ EventComponent.prototype.draw = function(args) {
 		paper = editor.paper || {},
 	    x = args.x || 0,
 	    y = args.y || 0,
-		drawing = {},
+		drawing = new Drawing(x, y, 1, 1),
 		max_item_w, item_h;
 	
 	component.drawing = drawing;
-	
-	drawing.pos = {"x":x, "y":y};
 	
 	// Draw items (to incorrect place)
 	max_item_w = 0;
@@ -47,8 +45,7 @@ EventComponent.prototype.draw = function(args) {
 		}
 	})();
 	
-	drawing.width = 10+5+max_item_w+5+10;
-	drawing.height = 60+item_h;
+	drawing.setSize(10+5+max_item_w+5+10, 60+item_h);
 	
 	// Draw input connector
 	drawing.input = paper.circle(x, y, 2);
@@ -84,17 +81,7 @@ EventComponent.prototype.draw = function(args) {
 	drawing.connector = paper.path("M 0 0 L 5 0 L 2.5 5 z");
 	drawing.connector.translate(x+5+5+15, y+95-35-5);
 	
-	var st = paper.set();
-	st.push(
-		drawing.input,
-		drawing.outerbox,
-		drawing.title,
-		drawing.label1,
-		drawing.label2,
-		drawing.innerbox,
-		drawing.connector
-	);
-	drawing.all = st;
+	drawing.init(paper, ['input', 'outerbox', 'title', 'label1', 'label2', 'innerbox', 'connector']);
 	
 	drawing.connector.attr({'fill': "#000000", 'z-index':zindex});
 	drawing.outerbox.attr({'fill': "315-#e3d7f4-#b3a7c4", 'z-index':zindex});

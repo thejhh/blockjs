@@ -24,15 +24,13 @@ CallComponent.prototype.draw = function(args) {
 		call_name = "",
 	    x = args.x || 0,
 	    y = args.y || 0,
-		drawing = {},
+		drawing = new Drawing(x, y, 1, 1),
 		w, h, topw, toph, bb1, bb2, optbbs = {}, max_opt_keys_w, max_opt_keys_h, opts_amount, max_opt_values_h, max_opt_h;
 	
 	if(component.obj) call_name += component.obj + ".";
 	if(component.name) call_name += component.name;
 	
 	component.drawing = drawing;
-	
-	drawing.pos = {"x":x, "y":y};
 	
 	// Draw items
 	(function() {
@@ -86,8 +84,7 @@ CallComponent.prototype.draw = function(args) {
 	h = toph;
 	if( (5+max_opt_h) * opts_amount - 5 > h) h = (5+max_opt_h) * opts_amount - 5;
 	
-	drawing.width = 5+w+5;
-	drawing.height = h+5;
+	drawing.setSize(5+w+5, h+5);
 	
 	// Move items to correct place
 	(function() {
@@ -128,24 +125,15 @@ CallComponent.prototype.draw = function(args) {
 		}
 	})();
 	
-	var st = paper.set();
-	st.push(
-		drawing.input,
-		drawing.outerbox,
-		drawing.label,
-		drawing.name,
-		//drawing.in_connector,
-		drawing.connector
-	);
+	drawing.init(paper, ['input', 'outerbox', 'label', 'name', 'connector']);
+	/*
 	(function(){
 		var i, opts = drawing.opts;
 		for(i in opts) if(opts.hasOwnProperty(i)) {
-			st.push(opts[i]);
+			keys.push(opts[i]);
 		}
 	})();
-	drawing.all = st;
-	
-	//drawing.all.attr({'z-index':zindex});
+	*/
 
 	makeDragable(drawing);
 	

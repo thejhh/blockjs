@@ -21,12 +21,10 @@ NumberComponent.prototype.draw = function(args) {
 		paper = editor.paper || {},
 	    x = args.x || 0,
 	    y = args.y || 0,
-		drawing = {},
+		drawing = new Drawing(x, y, 1, 1),
 		w, h, bb1, bb2;
 	
 	component.drawing = drawing;
-	
-	drawing.pos = {"x":x, "y":y};
 	
 	// Make text elements
 	drawing.label = paper.text(0, 0, "number");
@@ -40,8 +38,7 @@ NumberComponent.prototype.draw = function(args) {
 	w = bb1.width + 5 + bb2.width;
 	h = bb2.height > bb1.height ? bb2.height : bb1.height;
 	
-	drawing.width = 5+5+w+5;
-	drawing.height = 5+h+5;
+	drawing.setSize(5+5+w+5, 5+h+5);
 
 	drawing.input = paper.circle(x, y, 2);
 	drawing.input.attr({'fill':'#ff0000', 'stroke':'none'});
@@ -57,17 +54,7 @@ NumberComponent.prototype.draw = function(args) {
 	drawing.connector.attr({'fill': "#000000", 'z-index':zindex});
 	drawing.connector.translate(x, y-2.5);
 	
-	var st = paper.set();
-	st.push(
-		drawing.input,
-		drawing.outerbox,
-		drawing.label,
-		drawing.value,
-		drawing.connector
-	);
-	drawing.all = st;
-	
-	//drawing.all.attr({'z-index':zindex});
+	drawing.init(paper, ['input', 'outerbox', 'label', 'value', 'connector']);
 
 	makeDragable(drawing);
 	
