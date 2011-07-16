@@ -60,7 +60,15 @@ Drawing.prototype.makeDragable = function(block) {
 	
 	// restoring state
 	up = function () {
-		var svg = this;
+		var svg = this,
+		    tmp = svg.dragtmp,
+		    cx = svg.attr("x"),
+		    cy = svg.attr("y"),
+		    ox = tmp.ox,
+		    oy = tmp.oy;
+		
+		block.move( ox-cx, oy-cy ); // Move back to original place
+		
 		delete svg.dragtmp;
 		//svg.attr({opacity: .5});
 	};
