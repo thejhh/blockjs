@@ -9,12 +9,8 @@ function EventComponent(args) {
 	if(!(this instanceof arguments.callee)) return new (arguments.callee)(args);
 	this.title = args.title || "Unknown";
 	this.names = args.names || [];
-	this.items = [];
-}
-
-/* Add item to schema */
-EventComponent.prototype.push = function(item) {
-	this.items.push(item);
+	this.block = new BlockComponent(merge_objects(args, {'x':0, 'y':0}));
+	this.area = new AreaComponent(merge_objects(args, {'x':0, 'y':0}));
 }
 
 /* Draw component to editor */
@@ -26,70 +22,51 @@ EventComponent.prototype.draw = function(args) {
 		paper = editor.paper || {},
 	    x = args.x || 0,
 	    y = args.y || 0,
-		drawing = new Drawing(x, y, 1, 1),
-		max_item_w, item_h;
+		drawing = new Drawing(x, y, 1, 1);
 	
 	component.drawing = drawing;
 	
-	// Draw items (to incorrect place)
-	max_item_w = 0;
-	item_h = 0;
-	(function() {
-		var i, items = component.items, length = items.length, last, w;
-		for(i=0; i<length; ++i) {
-			last = items[i].draw(merge_objects(args, {'x':0, 'y':0}));
-			w = items[i].width();
-			if(w > max_item_w) max_item_w = w;
-			item_h += items[i].height();
-		}
-	})();
-	
-	drawing.resize(10+5+max_item_w+5+10, 60+item_h);
+	drawing.bb = {};
 	
 	// Draw input connector
 	drawing.input = paper.circle(x, y, 2);
 	drawing.input.attr({'fill':'#ff0000', 'stroke':'none'});
 	
-	// Draw outerbox
-	drawing.outerbox = paper.rect(x, y, drawing.width, drawing.height);
-	
 	// Draw title
-	drawing.title = paper.text(x+300/2, y + 20, component.title);
+	drawing.title = paper.text(x, y, component.title);
+	drawing.title.attr({'font-size':18});
+	drawing.bb.title = drawing.title.getBBox();
 	
 	// Draw label1
-	drawing.label1 = paper.text(x+25, y + 25, "when");
-	
-	// Draw labe2
-	drawing.label2 = paper.text(x+15, y + 40, "do");
-	
-	// Draw innerbox
-	drawing.innerbox = paper.rect(x+5, y+drawing.height-item_h-5, 5+max_item_w+5, 5+item_h+5);
-	drawing.innerbox.insertAfter(drawing.title);
-	
-	// Move items to correct place
-	(function() {
-		var i, items = component.items, length = items.length, last, cury = y+drawing.height-item_h;
-		for(i=0; i<length; ++i) {
-			items[i].move(x+5+25-2.5, cury);
-			cury += items[i].height();
-			items[i].drawing.all.insertAfter(drawing.innerbox);
-		}
-	})();
-	
-	// Draw connector
-	drawing.connector = paper.path("M 0 0 L 5 0 L 2.5 5 z");
-	drawing.connector.translate(x+5+5+15, y+95-35-5);
-	
-	drawing.init(paper, ['input', 'outerbox', 'title', 'label1', 'label2', 'innerbox', 'connector']);
-	
-	drawing.connector.attr({'fill': "#000000"});
-	drawing.outerbox.attr({'fill': "315-#e3d7f4-#b3a7c4"});
-	//drawing.outerbox.insertBefore(drawing.label1);
-	drawing.innerbox.attr({'fill': "315-#ffffff-#cfcfcf"});
-	//drawing.innerbox.insertAfter(drawing.outerbox);
+	drawing.label1 = paper.text(x, y, "when");
 	drawing.label1.attr({'font-size':14, 'fill':'#4b5320'});
+	drawing.bb.label1 = drawing.label1.getBBox();
+	
+	// Draw label2
+	drawing.label2 = paper.text(x, y, "do");
 	drawing.label2.attr({'font-size':14, 'fill':'#4b5320'});
-	drawing.title.attr({'font-size':18});
+	drawing.bb.label2 = drawing.label2.getBBox();
+	
+	// Draw execution objects
+	component.block.draw(merge_objects(args, {'x':x+5, 'y':y+5+drawing.bb.title.height+5}));
+	
+	// Draw other objects
+	component.area.draw(merge_objects(args, {'x':x+5, 'y':y+5+drawing.bb.title.height+5 + component.block.height() + 5}));
+	
+	// Resize drawing
+	drawing.resize(5+component.block.width()+5, y+5+drawing.bb.title.height+5+component.block.height()+5 + component.area.height() + 5);
+	
+	// Draw outerbox
+	drawing.outerbox = paper.rect(x, y, drawing.width, drawing.height);
+	drawing.outerbox.attr({'fill': "315-#e3d7f4-#b3a7c4"});
+	drawing.outerbox.insertBefore(drawing.title);
+	
+	// Move objects
+	drawing.title.translate(drawing.width/2, 5+drawing.bb.title.height/2);
+	drawing.label1.translate(5+drawing.bb.label1.width/2, (5+drawing.bb.title.height+5) - drawing.bb.label2.height - drawing.bb.label1.height/2);
+	drawing.label2.translate(5+drawing.bb.label2.width/2, (5+drawing.bb.title.height+5) - drawing.bb.label2.height/2);
+	
+	drawing.init(paper, ['input', 'outerbox', 'title', 'label1', 'label2']);
 	
 	drawing.makeDragable();
 	
@@ -106,10 +83,8 @@ EventComponent.prototype.move = function(x, y) {
 	all.translate(x, y);
 	
 	// Move components
-	(function() {
-		var i, items = component.items, length = items.length;
-		for(i=0; i<length; ++i) items[i].move(x, y);
-	})();
+	component.block.move(x, y);
+	component.area.move(x, y);
 	
 }
 	

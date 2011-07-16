@@ -10,6 +10,7 @@ function MainComponent(args) {
 	this.title = args.title || "Unknown";
 	this.names = args.names || [];
 	this.block = new BlockComponent(merge_objects(args, {'x':0, 'y':0}));
+	this.area = new AreaComponent(merge_objects(args, {'x':0, 'y':0}));
 }
 
 /* Draw component to editor */
@@ -40,7 +41,7 @@ MainComponent.prototype.draw = function(args) {
 	drawing.label1 = paper.text(x, y, "when");
 	drawing.label1.attr({'font-size':14, 'fill':'#4b5320'});
 	drawing.bb.label1 = drawing.label1.getBBox();
-
+	
 	// Draw label2
 	drawing.label2 = paper.text(x, y, "do");
 	drawing.label2.attr({'font-size':14, 'fill':'#4b5320'});
@@ -49,8 +50,11 @@ MainComponent.prototype.draw = function(args) {
 	// Draw execution objects
 	component.block.draw(merge_objects(args, {'x':x+5, 'y':y+5+drawing.bb.title.height+5}));
 	
+	// Draw other objects
+	component.area.draw(merge_objects(args, {'x':x+5, 'y':y+5+drawing.bb.title.height+5 + component.block.height() + 5}));
+	
 	// Resize drawing
-	drawing.resize(5+component.block.width()+5, y+5+drawing.bb.title.height+5+component.block.height()+5);
+	drawing.resize(5+component.block.width()+5, y+5+drawing.bb.title.height+5+component.block.height()+5 + component.area.height() + 5);
 	
 	// Draw outerbox
 	drawing.outerbox = paper.rect(x, y, drawing.width, drawing.height);
@@ -62,39 +66,12 @@ MainComponent.prototype.draw = function(args) {
 	drawing.label1.translate(5+drawing.bb.label1.width/2, (5+drawing.bb.title.height+5) - drawing.bb.label2.height - drawing.bb.label1.height/2);
 	drawing.label2.translate(5+drawing.bb.label2.width/2, (5+drawing.bb.title.height+5) - drawing.bb.label2.height/2);
 	
-	/*
-	(function() {
-		var i, items = component.items, length = items.length, last, cury = y+drawing.height-35;
-		for(i=0; i<length; ++i) {
-			last = items[i].draw(merge_objects(args, {'x':x+5+25-2.5, 'y':cury}));
-			cury += last.height;
-
-		}
-	})();
-	*/
-	
-	/*
-	drawing.connector = paper.path("M 0 0 L 5 0 L 2.5 5 z");
-	drawing.connector.attr({'fill': "#000000"});
-	drawing.connector.translate(x+5+15, y+95-35-5);
-	*/
-	
 	drawing.init(paper, ['input', 'outerbox', 'title', 'label1', 'label2']);
 	
 	drawing.makeDragable();
 	
-	/*
-	(function() {
-		var i, items = component.items, length = items.length;
-		for(i=0; i<length; ++i) {
-			items[i].drawing.all.toFront();
-		}
-	})();
-	*/
-	
 	return drawing;
 }
-
 
 /* Move element and all connected components */
 MainComponent.prototype.move = function(x, y) {
@@ -107,12 +84,8 @@ MainComponent.prototype.move = function(x, y) {
 	
 	// Move components
 	component.block.move(x, y);
-	/*
-	(function() {
-		var i, items = component.items, length = items.length;
-		for(i=0; i<length; ++i) items[i].move(x, y);
-	})();
-	*/
+	component.area.move(x, y);
+	
 }
 	
 /* Returns total width of element */

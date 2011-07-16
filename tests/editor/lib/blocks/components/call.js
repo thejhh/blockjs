@@ -80,10 +80,12 @@ CallComponent.prototype.draw = function(args) {
 	h = toph;
 	if( (5+max_opt_h) * opts_amount - 5 > h) h = (5+max_opt_h) * opts_amount - 5;
 	
+	// Reset drawing width and height
 	drawing.resize(5+w+5 + 5 + max_opt_values_w, h);
 	
-	drawing.label.attr({'x': x-15+5+bb1.width/2,             'y':y+h/2 });
-	drawing.title.attr( {'x': x-15+5+bb1.width+5+bb2.width/2, 'y':y+h/2 });
+	// Move labels
+	drawing.label.translate(x-15+5+bb1.width/2,             y+h/2);
+	drawing.title.translate(x-15+5+bb1.width+5+bb2.width/2, y+h/2);
 	
 	// Draw outer box in correct size
 	drawing.outerbox = paper.rect(x-15, y, 5+w+5, h);
@@ -117,7 +119,7 @@ CallComponent.prototype.draw = function(args) {
 		}
 	})();
 	
-	drawing.init(paper, ['input', 'outerbox', 'label', 'name']);
+	drawing.init(paper, ['input', 'outerbox', 'label', 'title']);
 	(function(){
 		var i, opts = drawing.opts;
 		for(i in opts) if(opts.hasOwnProperty(i)) {

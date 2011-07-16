@@ -20,20 +20,17 @@ window.onload = function(){
 	call_listen.set("host", new TextComponent({'value':'127.0.0.1'}));
 	main.block.push(call_listen);
 	
-/*
 	// Create event
 	create_object.set("Content-Type", new TextComponent({'value':'text/plain'}));
 	
 	call_writehead.set("status", new NumberComponent({'value':200}));
 	call_writehead.set("host", create_object);
-	event.push(call_writehead);
+	event.block.push(call_writehead);
 	
 	call_end.set("output", new TextComponent({'value':'Hello World\n'}));
-	event.push(call_end);
+	event.block.push(call_end);
 	
-	main.push(event);
-	
-*/
+	main.area.push(event);
 	
 	schema.push(main);
 	
