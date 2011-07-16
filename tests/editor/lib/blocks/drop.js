@@ -1,79 +1,64 @@
 /*
- * BlockJS Editor Test -- Drawing
+ * BlockJS Editor Test -- Drop Event Library
  * Copyright 2011 Jaakko-Heikki Heusala <jheusala@iki.fi>
  * $Id: $
  */
 
 /* Constructor */
-function Drawing(x, y, w, h) {
+function Drop(x, y, w, h) {
 	if(!(this instanceof arguments.callee)) return new (arguments.callee)(args);
-	var drawing = this;
-	drawing.pos = {"x":x, "y":y};
-	drawing.width = w;
-	drawing.height = h;
+	var lib = this;
+	lib.next_id = 0;
+	lib.events = [];
 }
 
-/* Set size of drawing */
-Drawing.prototype.resize = function(w, h) {
-	var drawing = this;
-	drawing.width = w;
-	drawing.height = h;
+/* Add drop event */
+Drop.prototype.add = function(x, y, fun) {
+	var lib = this,
+	    events = lib.events,
+	    id = lib.next_id++,
+	    e = {'id':id, 'x':x, 'y':y, 'fun':fun};
+	events[id] = e;
+	return e;
 }
 
-/* */
-Drawing.prototype.init = function(paper, keys) {
-	var drawing = this,
-	    st = paper.set(),
-	    i, length=keys.length;
-	drawing.paper = paper;
-	for(i=0; i<length; ++i) st.push( drawing[keys[i]] );
-	drawing.all = st;
+/* Remove drop event */
+Drop.prototype.remove = function(event) {
+	var lib = this,
+	    events = lib.events;
+	delete events[event.id];
 }
 
-/* Make a drawing dragable */
-Drawing.prototype.makeDragable = function(block) {
-	var drawing = this,
-	    start, move, up;
+/* Calculate distance of two points */
+function distance(x1, y1, x2, y2) {
+	var abs = Math.abs,
+	    x = abs(x1-x2),
+	    y = abs(y1-y2);
+	return Math.sqrt(x*x+y*y);
+}
 	
-	// storing original coordinates
-	start = function () {
-		var svg = this,
-		    tmp = {};
-		svg.dragtmp = tmp;
-		tmp.ox = svg.attr("x");
-		tmp.oy = svg.attr("y");
-		//svg.attr({opacity: 1});
-	};
+/* Execute events until first successful near (x,y) */
+Drop.prototype.exec = function(x, y) {
 	
-	// move will be called with dx and dy
-	move = function (dx, dy) {
-		var svg = this,
-		    tmp = svg.dragtmp,
-		    nx = tmp.ox + dx,
-		    ny = tmp.oy + dy;
-		    px = tmp.px || dx,
-		    py = tmp.py || dy;
-		block.move(nx - (tmp.ox+px), ny - (tmp.oy+py) );
-		tmp.px = dx;
-		tmp.py = dy;
-	};
+	var lib = this,
+	    events = lib.events,
+	    near = [],
+		i=0, length = events.length,
+	    e, d,
+		limit = 5;
 	
-	// restoring state
-	up = function () {
-		var svg = this,
-		    tmp = svg.dragtmp,
-		    cx = svg.attr("x"),
-		    cy = svg.attr("y"),
-		    ox = tmp.ox,
-		    oy = tmp.oy;
-		
-		block.move( ox-cx, oy-cy ); // Move back to original place
-		
-		delete svg.dragtmp;
-		//svg.attr({opacity: .5});
-	};
+	for(;i<length; ++i) {
+		e = events[i];
+		d = distance(x, y, e.x, e.y);
+		if(d < limit) near.push({'d':d, 'e':e});
+	}
 	
-	drawing.all.drag(move, start, up);
-}		
+	if(near.length === 0) return;
+	if(near.length === 1) return events[0].fun();
+	
+	near.sort(function(a, b) { return (a.d === b.d) ? 0 : ((a.d < b.d) ? -1 : 1); });
+	
+	return events[0].fun();
+}
 
 /* EOF */
