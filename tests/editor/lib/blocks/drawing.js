@@ -74,6 +74,12 @@ Drawing.prototype.makeDragable = function(block) {
 	};
 	
 	drawing.all.drag(move, start, up);
+	
+	/*
+	drawing.all.mouseup(function (event) {
+		this.attr({fill: "red"});
+	});
+	*/
 }		
 
 /* EOF */
