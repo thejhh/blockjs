@@ -35,7 +35,7 @@ AreaComponent.prototype.draw = function(args) {
 	(function() {
 		var i, items = component.items, length = items.length, last, cury = y+5;
 		for(i=0; i<length; ++i) {
-			last = items[i].draw(merge_objects(args, {'x':x+5+15, 'y':cury}));
+			last = items[i].draw(merge_objects(args, {'x':x+5, 'y':cury}));
 			cury += last.height+5;
 			if(last.width > max_items_width) max_items_width = last.width;
 			items_height += 5 + last.height;

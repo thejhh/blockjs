@@ -22,7 +22,7 @@ CreateComponent.prototype.draw = function(args) {
 	    x = args.x || 0,
 	    y = args.y || 0,
 		drawing = new Drawing(x, y, 1, 1),
-		w, h, topw, toph, bb1, bb2, optbbs = {}, max_opt_keys_w, max_opt_keys_h, opts_amount, max_opt_values_h, max_opt_h;
+		w, h, topw, toph, bb1, bb2, optbbs = {}, max_opt_keys_w, max_opt_keys_h, opts_amount, max_opt_values_w, max_opt_values_h, max_opt_h;
 	
 	component.drawing = drawing;
 	
@@ -54,6 +54,7 @@ CreateComponent.prototype.draw = function(args) {
 	// Draw keywords
 	max_opt_keys_w = 0;
 	max_opt_keys_h = 0;
+	max_opt_values_w = 0;
 	max_opt_values_h = 0;
 	opts_amount = 0;
 	drawing.opts = {};
@@ -66,6 +67,7 @@ CreateComponent.prototype.draw = function(args) {
 			optbbs[i] = o.getBBox();
 			if(optbbs[i].width > max_opt_keys_w) max_opt_keys_w = optbbs[i].width;
 			if(optbbs[i].height > max_opt_keys_h) max_opt_keys_h = optbbs[i].height;
+			if(opts[i].width() > max_opt_values_w) max_opt_values_w = opts[i].width();
 			if(drawing.bb_values[i].height > max_opt_values_h) max_opt_values_h = drawing.bb_values[i].height;
 			opts_amount++;
 		}
@@ -78,7 +80,7 @@ CreateComponent.prototype.draw = function(args) {
 	h = toph;
 	if( (5+max_opt_h) * opts_amount - 5 > h) h = (5+max_opt_h) * opts_amount - 5;
 	
-	drawing.resize(5+w+5, h);
+	drawing.resize(5+w+5 + 5+max_opt_values_w, h);
 	
 	// Move label and title
 	drawing.label.attr({'x': x+5+5+bb1.width/2,             'y':y });
@@ -107,7 +109,7 @@ CreateComponent.prototype.draw = function(args) {
 	(function() {
 		var i, items = drawing.values, cury=y;
 		for(i in items) if(items.hasOwnProperty(i)) {
-			items[i].all.translate(x+5+drawing.width, cury);
+			items[i].all.translate(x+5+drawing.width - 5 - max_opt_values_w, cury);
 			cury += 5 + items[i].height;
 		}
 	})();

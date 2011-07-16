@@ -67,7 +67,7 @@ CallComponent.prototype.draw = function(args) {
 			optbbs[i] = o.getBBox();
 			if(optbbs[i].width > max_opt_keys_w) max_opt_keys_w = optbbs[i].width;
 			if(optbbs[i].height > max_opt_keys_h) max_opt_keys_h = optbbs[i].height;
-			if(drawing.bb_values[i].width > max_opt_values_w) max_opt_values_w = drawing.bb_values[i].width;
+			if(opts[i].width() > max_opt_values_w) max_opt_values_w = opts[i].width();
 			if(drawing.bb_values[i].height > max_opt_values_h) max_opt_values_h = drawing.bb_values[i].height;
 			opts_amount++;
 		}
@@ -84,11 +84,11 @@ CallComponent.prototype.draw = function(args) {
 	drawing.resize(5+w+5 + 5 + max_opt_values_w, h);
 	
 	// Move labels
-	drawing.label.translate(x-15+5+bb1.width/2,             y+h/2);
-	drawing.title.translate(x-15+5+bb1.width+5+bb2.width/2, y+h/2);
+	drawing.label.translate(x+5+bb1.width/2,             y+h/2);
+	drawing.title.translate(x+5+bb1.width+5+bb2.width/2, y+h/2);
 	
 	// Draw outer box in correct size
-	drawing.outerbox = paper.rect(x-15, y, 5+w+5, h);
+	drawing.outerbox = paper.rect(x, y, 5+w+5, h);
 	drawing.outerbox.attr({'fill': "315-#d7e3f4-#d7e3f4"});
 	drawing.outerbox.insertBefore(drawing.label);
 	
@@ -103,7 +103,7 @@ CallComponent.prototype.draw = function(args) {
 	(function() {
 		var i, items = component.opts, cury=y+max_opt_h/2;
 		for(i in items) if(items.hasOwnProperty(i)) {
-			items[i].move(x+drawing.width-max_opt_values_w-5-15, cury);
+			items[i].move(x+drawing.width-max_opt_values_w-5, cury);
 			cury += 5 + items[i].height();
 			items[i].drawing.all.insertAfter(drawing.title);
 		}
@@ -114,7 +114,7 @@ CallComponent.prototype.draw = function(args) {
 		var i, opts = drawing.opts, tmp_y = y - ( ((5+max_opt_h)*opts_amount-5) / 2 - max_opt_h/2 );
 		tmp_y = y + max_opt_values_h/2;
 		for(i in opts) if(opts.hasOwnProperty(i)) {
-			opts[i].attr( {'x': x-15+5+bb1.width+5+bb2.width+5+optbbs[i].width/2, 'y':tmp_y });
+			opts[i].attr( {'x': x+5+bb1.width+5+bb2.width+5+optbbs[i].width/2, 'y':tmp_y });
 			tmp_y += max_opt_h + 5;
 		}
 	})();

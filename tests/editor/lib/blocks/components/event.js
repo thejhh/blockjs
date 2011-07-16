@@ -54,7 +54,12 @@ EventComponent.prototype.draw = function(args) {
 	component.area.draw(merge_objects(args, {'x':x+5, 'y':y+5+drawing.bb.title.height+5 + component.block.height() + 5}));
 	
 	// Resize drawing
-	drawing.resize(5+component.block.width()+5, y+5+drawing.bb.title.height+5+component.block.height()+5 + component.area.height() + 5);
+	(function(){
+		var block_w = 5+component.block.width()+5,
+		    area_w = 5+component.area.width()+5,
+		    max_w = (block_w > area_w) ? block_w : area_w;
+		drawing.resize(5+max_w+5, 5+drawing.bb.title.height+5+component.block.height()+5 + component.area.height() + 5);
+	})();
 	
 	// Draw outerbox
 	drawing.outerbox = paper.rect(x, y, drawing.width, drawing.height);
