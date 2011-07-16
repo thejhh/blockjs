@@ -73,7 +73,7 @@ EventComponent.prototype.draw = function(args) {
 	
 	drawing.init(paper, ['input', 'outerbox', 'title', 'label1', 'label2']);
 	
-	drawing.makeDragable();
+	drawing.makeDragable(component);
 	
 	return drawing;
 }

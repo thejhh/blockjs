@@ -53,7 +53,7 @@ BlockComponent.prototype.draw = function(args) {
 	
 	drawing.init(paper, ['outerbox', 'connector']);
 	
-	drawing.makeDragable();
+	drawing.makeDragable(component);
 	
 	return drawing;
 }

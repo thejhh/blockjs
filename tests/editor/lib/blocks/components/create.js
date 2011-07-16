@@ -123,7 +123,7 @@ CreateComponent.prototype.draw = function(args) {
 		}
 	})();
 
-	drawing.makeDragable();
+	drawing.makeDragable(component);
 	
 	return drawing;
 }

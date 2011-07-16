@@ -31,8 +31,9 @@ Drawing.prototype.init = function(paper, keys) {
 }
 
 /* Make a drawing dragable */
-Drawing.prototype.makeDragable = function() {
-	var drawing = this, start, move, up;
+Drawing.prototype.makeDragable = function(block) {
+	var drawing = this,
+	    start, move, up;
 	
 	// storing original coordinates
 	start = function () {
@@ -52,7 +53,7 @@ Drawing.prototype.makeDragable = function() {
 		    ny = tmp.oy + dy;
 		    px = tmp.px || dx,
 		    py = tmp.py || dy;
-		drawing.all.translate(nx - (tmp.ox+px), ny - (tmp.oy+py) );
+		block.move(nx - (tmp.ox+px), ny - (tmp.oy+py) );
 		tmp.px = dx;
 		tmp.py = dy;
 	};

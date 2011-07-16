@@ -55,7 +55,7 @@ TextComponent.prototype.draw = function(args) {
 	
 	drawing.init(paper, ['input', 'outerbox', 'label', 'value', 'connector']);
 
-	drawing.makeDragable();
+	drawing.makeDragable(component);
 	
 	return drawing;
 }

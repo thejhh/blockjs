@@ -55,7 +55,7 @@ AreaComponent.prototype.draw = function(args) {
 	
 	drawing.init(paper, ['outerbox']);
 	
-	drawing.makeDragable();
+	drawing.makeDragable(component);
 	
 	return drawing;
 }
