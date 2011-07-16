@@ -7,10 +7,13 @@
 /* Component constructor */
 function BlockComponent(args) {
 	if(!(this instanceof arguments.callee)) return new (arguments.callee)(args);
-	this.items = [];
+	var component = this, 
+	    args = args || {};
+	component.parent = args.parent;
+	component.items = [];
 }
 
-/* Add item to schema */
+/* Add item */
 BlockComponent.prototype.push = function(item) {
 	this.items.push(item);
 }
@@ -53,7 +56,7 @@ BlockComponent.prototype.draw = function(args) {
 	
 	drawing.init(paper, ['outerbox', 'connector']);
 	
-	drawing.makeDragable(component);
+	drawing.makeDragable(component.parent);
 	
 	return drawing;
 }

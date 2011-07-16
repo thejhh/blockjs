@@ -7,7 +7,10 @@
 /* Component constructor */
 function AreaComponent(args) {
 	if(!(this instanceof arguments.callee)) return new (arguments.callee)(args);
-	this.items = [];
+	var component = this, 
+	    args = args || {};
+	component.parent = args.parent;
+	component.items = [];
 }
 
 /* Add item */
@@ -55,7 +58,7 @@ AreaComponent.prototype.draw = function(args) {
 	
 	drawing.init(paper, ['outerbox']);
 	
-	drawing.makeDragable(component);
+	drawing.makeDragable(component.parent);
 	
 	return drawing;
 }

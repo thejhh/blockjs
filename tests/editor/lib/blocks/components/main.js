@@ -7,10 +7,11 @@
 /* Component constructor */
 function MainComponent(args) {
 	if(!(this instanceof arguments.callee)) return new (arguments.callee)(args);
-	this.title = args.title || "Unknown";
-	this.names = args.names || [];
-	this.block = new BlockComponent(merge_objects(args, {'x':0, 'y':0}));
-	this.area = new AreaComponent(merge_objects(args, {'x':0, 'y':0}));
+	var component = this;
+	component.title = args.title || "Unknown";
+	component.names = args.names || [];
+	component.block = new BlockComponent(merge_objects(args, {'x':0, 'y':0, 'parent':component}));
+	component.area = new AreaComponent(merge_objects(args, {'x':0, 'y':0, 'parent':component}));
 }
 
 /* Draw component to editor */
