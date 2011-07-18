@@ -171,4 +171,20 @@ CallComponent.prototype.height = function() {
 	return drawing.height;
 }
 
+/* Move all elements to front */
+CallComponent.prototype.toFront = function() {
+	var component = this,
+	    drawing = component.drawing;
+	drawing.all.toFront();
+	
+	// Move components
+	(function() {
+		var i, items = component.opts;
+		for(i in items) if(items.hasOwnProperty(i)) {
+			items[i].toFront();
+		}
+	})();
+	
+}
+
 /* EOF */

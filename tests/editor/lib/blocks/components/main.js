@@ -108,4 +108,13 @@ MainComponent.prototype.height = function() {
 	return drawing.height;
 }
 
+/* Move all elements to front */
+MainComponent.prototype.toFront = function() {
+	var component = this,
+	    drawing = component.drawing;
+	drawing.all.toFront();
+	component.block.toFront();
+	component.area.toFront();
+}
+
 /* EOF */

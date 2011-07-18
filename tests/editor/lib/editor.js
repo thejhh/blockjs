@@ -27,12 +27,8 @@ function Editor(args) {
 	    winsize = getWindowSize(),
 	    width = winsize.width-1,
 	    height = winsize.height-32,
-		paper = Raphael(blocks, width, height),
-		space = paper.rect(0, 0, width-1, height-1);
-	space.attr({'fill': "315-#ffffff-#cfcfcf"});
-	//space.toBack();
-	//space.attr({'fill': "315-#ffffff-#cfcfcf", 'z-index': '999'});
-	
+		paper = Raphael(blocks, width, height);
+
 	editor.paper = paper;
 }
 

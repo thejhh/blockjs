@@ -43,6 +43,7 @@ Drawing.prototype.makeDragable = function(block) {
 		tmp.ox = svg.attr("x");
 		tmp.oy = svg.attr("y");
 		//svg.attr({opacity: 1});
+		block.toFront();
 	};
 	
 	// move will be called with dx and dy

@@ -83,4 +83,11 @@ TextComponent.prototype.height = function() {
 	return drawing.height;
 }
 
+/* Move all elements to front */
+TextComponent.prototype.toFront = function() {
+	var component = this,
+	    drawing = component.drawing;
+	drawing.all.toFront();
+}
+
 /* EOF */

@@ -32,7 +32,7 @@ window.onload = function(){
 	
 	main.area.push(event);
 	
-	schema.push(main);
+	schema.area.push(main);
 	
 	// Display schema
 	editor.display(schema);

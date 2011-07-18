@@ -95,4 +95,18 @@ AreaComponent.prototype.height = function() {
 	return drawing.height;
 }
 
+/* Move all elements to front */
+AreaComponent.prototype.toFront = function() {
+	var component = this,
+	    drawing = component.drawing;
+	drawing.all.toFront();
+
+	// Move child components to front
+	(function() {
+		var i, items = component.items, length = items.length;
+		for(i=0; i<length; ++i) items[i].toFront();
+	})();
+	
+}
+
 /* EOF */
