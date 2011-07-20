@@ -22,6 +22,9 @@ small concept testing.
 
 Feel free to fork the project and test your own ideas!
 
+[Live demo](http://www.blockjs.org/src/blockjs/tests/editor/editor.html) is 
+under progress but it is still missing most features.
+
 Main parts of the blockjs
 -------------------------
 * Application Editor
